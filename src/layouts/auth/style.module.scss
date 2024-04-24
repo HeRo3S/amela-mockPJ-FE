@@ -1,0 +1,56 @@
+$background-paper: #fff;
+
+.layoutWrapper {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.leftGridWrapper {
+    background-color: $background-paper ;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    header {
+        left: 0;
+        padding: 24px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.logoLink {
+    display: inline-flex;
+    height: 32px;
+    width: 32px;
+}
+
+.rightGridWrapper {
+    align-items: center;
+    background: radial-gradient(50% 50% at 50% 50%, #122647 0%, #090e23 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.welcomeText {
+    text-align: center;
+    color: inherit;
+    margin-bottom: 8px;
+    color: inherit;
+
+    a {
+        color: #fcbf0f;
+    }
+}
+
+.sloganText {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
