@@ -14,7 +14,13 @@ import {
 } from "@heroicons/react/24/solid";
 import { SvgIcon } from "@mui/material";
 
-export const userItems = [
+interface ListData {
+  title: string;
+  path: string;
+  icon: JSX.Element;
+}
+
+export const userItems: ListData[] = [
   {
     title: "Trang chủ",
     path: "/dashboard",

@@ -7,6 +7,8 @@ import RootWrapper from "wrappers/RootWrapper";
 import configs from "constants/config";
 import { ThemeProvider } from "@mui/material";
 import MUI_THEME from "constants/muitheme";
+import { Provider } from "react-redux";
+import store from "redux/store";
 
 export const history = createBrowserHistory();
 
@@ -23,13 +25,15 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={MUI_THEME}>
-        <HistoryRouter history={history}>
-          <React.Suspense fallback={null}>
-            <RootWrapper />
-          </React.Suspense>
-        </HistoryRouter>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={MUI_THEME}>
+          <HistoryRouter history={history}>
+            <React.Suspense fallback={null}>
+              <RootWrapper />
+            </React.Suspense>
+          </HistoryRouter>
+        </ThemeProvider>
+      </Provider>
       {configs.APP_ENV !== "prod" && (
         <ReactQueryDevtools initialIsOpen={false} />
       )}
@@ -38,4 +42,3 @@ function App() {
 }
 
 export default App;
-

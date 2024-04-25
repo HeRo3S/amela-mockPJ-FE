@@ -22,8 +22,10 @@ const LayoutContainer = styled("div")({
   width: "100%",
 });
 
-function Layout(props) {
-  // eslint-disable-next-line react/prop-types
+interface IProps {
+  children: React.ReactNode;
+}
+function DashboardLayout(props: IProps) {
   const { children } = props;
   const pathname = useLocation().pathname;
   const [openNav, setOpenNav] = useState(false);
@@ -53,4 +55,4 @@ function Layout(props) {
   );
 }
 
-export default Layout;
+export default DashboardLayout;

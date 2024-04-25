@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
 import ChevronUpDownIcon from "@heroicons/react/24/solid/ChevronUpDownIcon";
 import ArrowUturnLeftIcon from "@heroicons/react/24/solid/ArrowUturnLeftIcon";
 import {
@@ -12,76 +11,52 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Scrollbar } from "../../components/scrollbar/Scrollbar";
-import { userItems, ptItems, adminItems } from "./Config";
+import { Scrollbar } from "components/Scrollbar";
+import { userItems, ptItems, adminItems } from "constants/sideNav";
 import SideNavItem from "./SideNavItem";
 import { useSelector } from "react-redux";
+import ROLES from "constants/roles";
 
-const roles = {
-  user: "Người dùng",
-  pt: "Huấn luyện viên",
-  admin: "Quản lý",
-};
-
-function SideNav(props) {
+interface IProps {
+  onClose: () => void;
+  open: boolean;
+}
+function SideNav(props: IProps) {
   const { open, onClose } = props;
   const { userInfo } = useSelector((state) => state.auth);
   const pathname = useLocation().pathname;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
   const itemForEachRole = () => {
-    if (userInfo?.role === "user") {
-      return userItems.map((item) => {
-        const active = item.path ? pathname === item.path : false;
-
-        return (
-          <SideNavItem
-            active={active}
-            disabled={item.disabled}
-            external={item.external}
-            icon={item.icon}
-            key={item.title}
-            path={item.path}
-            title={item.title}
-          />
-        );
-      });
+    let listItems;
+    switch (userInfo?.role) {
+      case "user":
+        listItems = userItems;
+        break;
+      case "pt":
+        listItems = ptItems;
+        break;
+      case "admin":
+        listItems = adminItems;
+        break;
+      default:
+        console.error("Cannot find user role!");
+        return;
     }
-    if (userInfo?.role === "pt") {
-      return ptItems.map((item) => {
-        const active = item.path ? pathname === item.path : false;
-
-        return (
-          <SideNavItem
-            active={active}
-            disabled={item.disabled}
-            external={item.external}
-            icon={item.icon}
-            key={item.title}
-            path={item.path}
-            title={item.title}
-          />
-        );
-      });
-    }
-
-    if (userInfo?.role === "admin") {
-      return adminItems.map((item) => {
-        const active = item.path ? pathname === item.path : false;
-
-        return (
-          <SideNavItem
-            active={active}
-            disabled={item.disabled}
-            external={item.external}
-            icon={item.icon}
-            key={item.title}
-            path={item.path}
-            title={item.title}
-          />
-        );
-      });
-    }
+    return listItems.map((item) => {
+      const active = item.path ? pathname === item.path : false;
+      return (
+        <SideNavItem
+          active={active}
+          disabled={item.disabled}
+          external={item.external}
+          icon={item.icon}
+          key={item.title}
+          path={item.path}
+          title={item.title}
+        />
+      );
+    });
   };
 
   const content = (
@@ -132,7 +107,7 @@ function SideNav(props) {
                 {userInfo?.lastName} {userInfo?.firstName}
               </Typography>
               <Typography color="neutral.400" variant="body2">
-                {roles[userInfo?.role]}
+                {ROLES[userInfo?.role]}
               </Typography>
             </div>
             <SvgIcon fontSize="small" sx={{ color: "neutral.500" }}>
@@ -247,8 +222,3 @@ function SideNav(props) {
 }
 
 export default SideNav;
-
-SideNav.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
-};

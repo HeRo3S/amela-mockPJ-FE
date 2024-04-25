@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import Layout from "components/Layouts/auth/Layout";
+import Layout from "components/Layouts/AuthLayout";
 import styles from "./style.module.scss";
 import { login } from "redux/features/authSlice";
 import { useDispatch } from "react-redux";

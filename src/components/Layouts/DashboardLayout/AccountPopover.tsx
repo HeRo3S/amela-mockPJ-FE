@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import {
   Box,
   Divider,
@@ -11,24 +10,23 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/features/authSlice";
 
-function AccountPopover(props) {
+interface IProps {
+  anchorEl: any;
+  onClose: () => void;
+  open: boolean;
+}
+
+function AccountPopover(props: IProps) {
   const { anchorEl, onClose, open } = props;
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // DANGER: DO NOT MOVE
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth.userInfo);
 
-  //   const handleSignOut = useCallback(
-  //     () => {
-  //       onClose?.();
-  //       auth.signOut();
-  //       router.push('/auth/login');
-  //     },
-  //     [onClose, auth, router]
-  //   );
-
   const handleSignOut = async () => {
-    await dispatch(logout());
-    navigate("/login");
+    //DANGER: DO NOT DELETE
+    // await dispatch(logout());
+    // navigate("/login");
   };
 
   return (
@@ -71,9 +69,3 @@ function AccountPopover(props) {
 }
 
 export default AccountPopover;
-
-AccountPopover.propTypes = {
-  anchorEl: PropTypes.any,
-  onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired,
-};
