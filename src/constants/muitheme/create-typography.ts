@@ -1,14 +1,5 @@
-import {
-  createTheme,
-  filledInputClasses,
-  inputLabelClasses,
-  outlinedInputClasses,
-  paperClasses,
-  tableCellClasses,
-} from "@mui/material/styles";
-
-const createTypography = {
-  typography: {
+export const createTypography = () => {
+  return {
     fontFamily:
       '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
     body1: {
@@ -82,20 +73,5 @@ const createTypography = {
       fontSize: "1.125rem",
       lineHeight: 1.2,
     },
-  },
+  };
 };
-
-const MUI_THEME = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1440,
-    },
-  },
-  ...createTypography,
-});
-
-export default MUI_THEME;

@@ -8,6 +8,7 @@ import ScrollToTop from "wrappers/ScrollToTop";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
+const ForgotPassword = lazy(() => import("pages/ForgotPassword"));
 
 export default function AppWrapper() {
   return (
@@ -16,6 +17,10 @@ export default function AppWrapper() {
       <Routes>
         <Route path={ROUTERS.AUTH.LOGIN} element={<Login />} />
         <Route path={ROUTERS.AUTH.SIGN_UP} element={<SignUp />} />
+        <Route
+          path={ROUTERS.AUTH.FORGOT_PASSWORD}
+          element={<ForgotPassword />}
+        ></Route>
         <Route path={ROUTERS.HOME} element={<AuthWrapper />}></Route>
       </Routes>
     </div>

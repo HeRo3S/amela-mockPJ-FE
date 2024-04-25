@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 import { useFormik } from "formik";
-import { Link as ReactLink, useNavigate } from "react-router-dom";
+import { Link as ReactLink } from "react-router-dom";
 import * as Yup from "yup";
 import {
   // Alert,
   Box,
   Button,
-  Link,
   Stack,
+  Link,
   SvgIcon,
   Tab,
   Tabs,
@@ -16,21 +16,20 @@ import {
 } from "@mui/material";
 import Layout from "components/Layouts/auth/Layout";
 import styles from "./style.module.scss";
-import { login } from "redux/features/authSlice";
-import { useDispatch } from "react-redux";
+// import AuthService from "../api/auth";
+// import { useDispatch } from "react-redux";
+// import { showAlert } from "../redux/features/alertSlice";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { ROUTERS } from "constants/routers";
 
-function Login() {
-  const [isLoading, setIsLoading] = useState(false);
+function ForgotPassword() {
   const [method, setMethod] = useState("email");
   // const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
       submit: null,
     },
     validationSchema: Yup.object({
@@ -38,22 +37,29 @@ function Login() {
         .email("Vui lòng nhập đúng email")
         .max(255)
         .required("Vui lòng nhập email"),
-      password: Yup.string().max(50).required("Vui lòng nhập mật khẩu"),
     }),
     onSubmit: async (values) => {
-      // try {
-      //   setIsLoading(true);
-      //   await dispatch(
-      //     login({
-      //       email: values.email,
-      //       password: values.password,
-      //     })
-      //   ).unwrap();
-      //   setIsLoading(false);
-      //   navigate("/dashboard");
-      // } catch (err) {
-      //   setIsLoading(false);
-      // }
+      try {
+        setIsLoading(true);
+        await AuthService.forgotPassword({
+          email: values.email,
+        });
+        dispatch(
+          showAlert({
+            severity: "success",
+            message: "Gửi mail thành công. Vui lòng kiểm tra email",
+          })
+        );
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        dispatch(
+          showAlert({
+            severity: "error",
+            message: err.response.data.message,
+          })
+        );
+      }
     },
   });
 
@@ -66,18 +72,7 @@ function Login() {
       <Box className={styles.componentWrapper}>
         <Box className={styles.contentWrapper}>
           <Stack spacing={1} sx={{ mb: 3 }}>
-            <Typography variant="h4">Đăng nhập</Typography>
-            <Typography color="text.secondary" variant="body2">
-              Không có tài khoản? &nbsp;
-              <Link
-                component={ReactLink}
-                to={ROUTERS.AUTH.SIGN_UP}
-                underline="hover"
-                variant="subtitle2"
-              >
-                Đăng ký
-              </Link>
-            </Typography>
+            <Typography variant="h4">Quên mật khẩu</Typography>
           </Stack>
           <Tabs onChange={handleMethodChange} sx={{ mb: 3 }} value={method}>
             <Tab label="Email" value="email" />
@@ -98,21 +93,6 @@ function Login() {
                     type="email"
                     value={formik.values.email}
                   />
-                  <TextField
-                    error={
-                      !!(formik.touched.password && formik.errors.password)
-                    }
-                    fullWidth
-                    helperText={
-                      formik.touched.password && formik.errors.password
-                    }
-                    label="Mật khẩu"
-                    name="password"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="password"
-                    value={formik.values.password}
-                  />
                 </Stack>
                 {formik.errors.submit && (
                   <Typography color="error" sx={{ mt: 3 }} variant="body2">
@@ -123,17 +103,17 @@ function Login() {
                   <Button
                     fullWidth
                     size="large"
-                    sx={{ mt: 3 }}
-                    type="submit"
-                    variant="contained"
                     startIcon={
                       <SvgIcon fontSize="small">
                         <ArrowPathIcon />
                       </SvgIcon>
                     }
+                    sx={{ mt: 3 }}
+                    type="submit"
+                    variant="contained"
                     disabled
                   >
-                    Đang đăng nhập
+                    Đang gửi
                   </Button>
                 ) : (
                   <Button
@@ -143,19 +123,25 @@ function Login() {
                     type="submit"
                     variant="contained"
                   >
-                    Đăng nhập
+                    Gửi mail
                   </Button>
                 )}
               </form>
-              <Link
+              <Typography
+                color="text.secondary"
+                variant="body2"
                 sx={{ marginLeft: "auto!important" }}
-                component={ReactLink}
-                to={ROUTERS.AUTH.FORGOT_PASSWORD}
-                underline="hover"
-                variant="subtitle2"
               >
-                Quên mật khẩu ?
-              </Link>
+                Đã nhớ mật khẩu? &nbsp;
+                <Link
+                  component={ReactLink}
+                  to={ROUTERS.AUTH.LOGIN}
+                  underline="hover"
+                  variant="subtitle2"
+                >
+                  Đăng nhập
+                </Link>
+              </Typography>
             </Stack>
           )}
           {method === "phoneNumber" && (
@@ -174,4 +160,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPassword;
