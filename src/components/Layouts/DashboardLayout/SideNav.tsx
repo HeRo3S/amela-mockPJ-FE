@@ -14,8 +14,8 @@ import {
 import { Scrollbar } from "components/Scrollbar";
 import { userItems, ptItems, adminItems } from "constants/sideNav";
 import SideNavItem from "./SideNavItem";
-import { useSelector } from "react-redux";
 import ROLES from "constants/roles";
+import { useAppSelector } from "utils/hooks/reduxToolkit";
 
 interface IProps {
   onClose: () => void;
@@ -23,7 +23,7 @@ interface IProps {
 }
 function SideNav(props: IProps) {
   const { open, onClose } = props;
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const pathname = useLocation().pathname;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 

@@ -6,7 +6,7 @@ const initialState = {
   userInfo: {
     lastName: "Lê",
     firstName: "Hùng",
-    roles: "admin",
+    role: "admin",
   },
   token: "",
   isLoggedIn: false,
