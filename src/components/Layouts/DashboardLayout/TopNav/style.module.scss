@@ -1,6 +1,5 @@
 @use "src/assets/breakpoints" as bp;
-$SIDE_NAV_WIDTH: 280px;
-$TOP_NAV_HEIGHT: 64px;
+@use "../style.module.scss" as index;
 
 .headerWrapper {
   top: 0px;
@@ -10,8 +9,8 @@ $TOP_NAV_HEIGHT: 64px;
   z-index: var(--zIndex-appBar);
 
   @media screen and (min-width: bp.$LG) {
-    left: $SIDE_NAV_WIDTH;
-    width: calc(100% - $SIDE_NAV_WIDTH);
+    left: index.$SIDE_NAV_WIDTH;
+    width: calc(100% - index.$SIDE_NAV_WIDTH);
   }
 }
 
@@ -20,7 +19,7 @@ $TOP_NAV_HEIGHT: 64px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  min-height: $TOP_NAV_HEIGHT;
+  min-height: index.$TOP_NAV_HEIGHT;
   padding: 0 16px;
 }
 

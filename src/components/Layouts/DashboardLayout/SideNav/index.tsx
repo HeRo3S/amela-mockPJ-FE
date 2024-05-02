@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Scrollbar } from "components/Scrollbar";
-import { userItems, adminItems, hrItems } from "constants/sideNav";
+import { userItems, adminItems, hrItems } from "./sideNavList";
 import styles from "./style.module.scss";
 import SideNavItem from "../SideNavItem";
 import ROLES from "constants/roles";

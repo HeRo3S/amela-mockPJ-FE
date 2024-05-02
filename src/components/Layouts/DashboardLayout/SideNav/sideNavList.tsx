@@ -11,6 +11,9 @@ import {
   UserPlusIcon,
   DocumentPlusIcon,
   ClipboardDocumentCheckIcon,
+  UserCircleIcon,
+  CalendarDaysIcon,
+  UsersIcon,
 } from "@heroicons/react/24/solid";
 import { SvgIcon } from "@mui/material";
 
@@ -44,7 +47,7 @@ export const userItems: ListData[] = [
     path: "/user/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <ArrowRightOnRectangleIcon />
+        <CalendarDaysIcon />
       </SvgIcon>
     ),
   },
@@ -53,7 +56,7 @@ export const userItems: ListData[] = [
     path: "/user/colleagues",
     icon: (
       <SvgIcon fontSize="small">
-        <BanknotesIcon />
+        <UsersIcon />
       </SvgIcon>
     ),
   },
@@ -62,7 +65,7 @@ export const userItems: ListData[] = [
     path: "/user/account",
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <UserCircleIcon />
       </SvgIcon>
     ),
   },
@@ -92,7 +95,7 @@ export const hrItems = [
     path: "/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <ArrowRightOnRectangleIcon />
+        <CalendarDaysIcon />
       </SvgIcon>
     ),
   },
@@ -101,7 +104,7 @@ export const hrItems = [
     path: "/account",
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <UserPlusIcon />
       </SvgIcon>
     ),
   },
@@ -110,7 +113,7 @@ export const hrItems = [
     path: "/employees",
     icon: (
       <SvgIcon fontSize="small">
-        <BanknotesIcon />
+        <UserIcon />
       </SvgIcon>
     ),
   },
@@ -119,7 +122,7 @@ export const hrItems = [
     path: "/account",
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <UserCircleIcon />
       </SvgIcon>
     ),
   },
@@ -149,7 +152,7 @@ export const adminItems = [
     path: "/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <ArrowRightOnRectangleIcon />
+        <CalendarDaysIcon />
       </SvgIcon>
     ),
   },
@@ -158,7 +161,7 @@ export const adminItems = [
     path: "/account",
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <UserPlusIcon />
       </SvgIcon>
     ),
   },
@@ -167,7 +170,7 @@ export const adminItems = [
     path: "/employees",
     icon: (
       <SvgIcon fontSize="small">
-        <BanknotesIcon />
+        <UserIcon />
       </SvgIcon>
     ),
   },
@@ -176,7 +179,7 @@ export const adminItems = [
     path: "/account",
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <UserCircleIcon />
       </SvgIcon>
     ),
   },
