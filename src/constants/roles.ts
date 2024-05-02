@@ -1,6 +1,6 @@
 const ROLES: { [key: string]: string } = {
   user: "Người dùng",
-  pt: "Huấn luyện viên",
+  hr: "Nhân sự",
   admin: "Quản lý",
 };
 

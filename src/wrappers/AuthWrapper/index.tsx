@@ -1,11 +1,7 @@
 import React from "react";
 import Cookies from "js-cookie";
-import PageHeader from "components/PageHeader";
-import SideNav from "components/SideNav";
-import styles from "./styles.module.scss";
 import useProfile from "utils/hooks/useProfile";
 import { Navigate, useOutlet } from "react-router-dom";
-import { ROUTERS } from "constants/routers";
 import DashboardLayout from "components/Layouts/DashboardLayout";
 
 export default function PageWrapper() {
