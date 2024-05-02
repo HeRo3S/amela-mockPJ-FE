@@ -9,8 +9,10 @@ import {
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { usePopover } from "utils/hooks/usePopover";
-import AccountPopover from "./AccountPopover";
+import AccountPopover from "../AccountPopover";
 import { useSelector } from "react-redux";
+import { useAppSelector } from "utils/hooks/reduxToolkit";
+import styles from "./style.module.scss";
 
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
@@ -20,7 +22,7 @@ interface IProps {
 }
 function TopNav(props: IProps) {
   const { onNavOpen } = props;
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const accountPopover = usePopover();
 

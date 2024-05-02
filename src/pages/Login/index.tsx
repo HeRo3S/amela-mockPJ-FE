@@ -67,17 +67,6 @@ function Login() {
         <Box className={styles.contentWrapper}>
           <Stack spacing={1} sx={{ mb: 3 }}>
             <Typography variant="h4">Đăng nhập</Typography>
-            <Typography color="text.secondary" variant="body2">
-              Không có tài khoản? &nbsp;
-              <Link
-                component={ReactLink}
-                to={ROUTERS.AUTH.SIGN_UP}
-                underline="hover"
-                variant="subtitle2"
-              >
-                Đăng ký
-              </Link>
-            </Typography>
           </Stack>
           <Tabs onChange={handleMethodChange} sx={{ mb: 3 }} value={method}>
             <Tab label="Email" value="email" />

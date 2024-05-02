@@ -1,1 +1,20 @@
 //global css
+
+:root {
+  --primary-color: #6366f1;
+  --common-white-color: #fff;
+
+  --neutral-color-50: #faf9fa;
+  --neutral-color-100: #f3f4f6;
+  --neutral-color-200: #e5e7eb;
+  --neutral-color-300: #d2d6db;
+  --neutral-color-400: #9da4ae;
+  --neutral-color-500: #6c737f;
+  --neutral-color-600: #4d5761;
+  --neutral-color-700: #2f3746;
+  --neutral-color-800: #1c2536;
+  --neutral-color-900: #111927;
+
+  --typoFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../redux/features/authSlice";
+import { logout } from "../../../../redux/features/authSlice";
 
 interface IProps {
   anchorEl: any;

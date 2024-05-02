@@ -23,7 +23,7 @@ interface ListData {
 export const userItems: ListData[] = [
   {
     title: "Trang chủ",
-    path: "/dashboard",
+    path: "/user/dashboard",
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -31,8 +31,8 @@ export const userItems: ListData[] = [
     ),
   },
   {
-    title: "Tạo QR",
-    path: "/qrCreate",
+    title: "Chấm công",
+    path: "/user/checkin",
     icon: (
       <SvgIcon fontSize="small">
         <QrCodeIcon />
@@ -40,26 +40,8 @@ export const userItems: ListData[] = [
     ),
   },
   {
-    title: "Lớp tập",
-    path: "/classes",
-    icon: (
-      <SvgIcon fontSize="small">
-        <ClipboardDocumentListIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Lớp của tôi",
-    path: "/myClass",
-    icon: (
-      <SvgIcon fontSize="small">
-        <ClipboardDocumentCheckIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Lịch sử tập",
-    path: "/attendances",
+    title: "Lịch sử chấm công",
+    path: "/user/attendances",
     icon: (
       <SvgIcon fontSize="small">
         <ArrowRightOnRectangleIcon />
@@ -67,8 +49,8 @@ export const userItems: ListData[] = [
     ),
   },
   {
-    title: "Gói tập",
-    path: "/payment",
+    title: "Đồng nghiệp",
+    path: "/user/colleagues",
     icon: (
       <SvgIcon fontSize="small">
         <BanknotesIcon />
@@ -77,7 +59,7 @@ export const userItems: ListData[] = [
   },
   {
     title: "Tài khoản",
-    path: "/account",
+    path: "/user/account",
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -86,7 +68,7 @@ export const userItems: ListData[] = [
   },
 ];
 
-export const ptItems = [
+export const hrItems = [
   {
     title: "Trang chủ",
     path: "/dashboard",
@@ -97,25 +79,43 @@ export const ptItems = [
     ),
   },
   {
-    title: "Tạo lớp",
-    path: "/createClass",
+    title: "Chấm công",
+    path: "/checkin",
     icon: (
       <SvgIcon fontSize="small">
-        <DocumentPlusIcon />
+        <QrCodeIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Lớp của tôi",
-    path: "/myClassPT",
+    title: "Lịch sử chấm công",
+    path: "/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <ClipboardDocumentListIcon />
+        <ArrowRightOnRectangleIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Tài khoản",
+    title: "Tạo tài khoản nhân viên",
+    path: "/account",
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    ),
+  },
+  {
+    title: "Nhân viên",
+    path: "/employees",
+    icon: (
+      <SvgIcon fontSize="small">
+        <BanknotesIcon />
+      </SvgIcon>
+    ),
+  },
+  {
+    title: "Tài khoản cá nhân",
     path: "/account",
     icon: (
       <SvgIcon fontSize="small">
@@ -128,7 +128,7 @@ export const ptItems = [
 export const adminItems = [
   {
     title: "Trang chủ",
-    path: "/dashboard",
+    path: "/user/dashboard",
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -136,8 +136,8 @@ export const adminItems = [
     ),
   },
   {
-    title: "Quét QR",
-    path: "/qrScan",
+    title: "Chấm công",
+    path: "/checkin",
     icon: (
       <SvgIcon fontSize="small">
         <QrCodeIcon />
@@ -145,52 +145,16 @@ export const adminItems = [
     ),
   },
   {
-    title: "Khách hàng",
-    path: "/customers",
+    title: "Lịch sử chấm công",
+    path: "/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <UserGroupIcon />
+        <ArrowRightOnRectangleIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Huấn luyện viên",
-    path: "/pts",
-    icon: (
-      <SvgIcon fontSize="small">
-        <AcademicCapIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Lớp dạy",
-    path: "/classes",
-    icon: (
-      <SvgIcon fontSize="small">
-        <ClipboardDocumentListIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Gói tập",
-    path: "/plans",
-    icon: (
-      <SvgIcon fontSize="small">
-        <BanknotesIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Giao dịch",
-    path: "/payments",
-    icon: (
-      <SvgIcon fontSize="small">
-        <CurrencyDollarIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Tài khoản",
+    title: "Tạo tài khoản nhân viên",
     path: "/account",
     icon: (
       <SvgIcon fontSize="small">
@@ -199,11 +163,20 @@ export const adminItems = [
     ),
   },
   {
-    title: "Tạo tài khoản",
-    path: "/createAccount",
+    title: "Nhân viên",
+    path: "/employees",
     icon: (
       <SvgIcon fontSize="small">
-        <UserPlusIcon />
+        <BanknotesIcon />
+      </SvgIcon>
+    ),
+  },
+  {
+    title: "Tài khoản cá nhân",
+    path: "/account",
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
       </SvgIcon>
     ),
   },

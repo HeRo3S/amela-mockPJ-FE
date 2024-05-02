@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import ChevronUpDownIcon from "@heroicons/react/24/solid/ChevronUpDownIcon";
 import ArrowUturnLeftIcon from "@heroicons/react/24/solid/ArrowUturnLeftIcon";
 import {
@@ -8,14 +9,16 @@ import {
   Drawer,
   Stack,
   SvgIcon,
+  Theme,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import { Scrollbar } from "components/Scrollbar";
-import { userItems, ptItems, adminItems } from "constants/sideNav";
-import SideNavItem from "./SideNavItem";
+import { userItems, adminItems, hrItems } from "constants/sideNav";
+import styles from "./style.module.scss";
+import SideNavItem from "../SideNavItem";
 import ROLES from "constants/roles";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
+import Img from "assets/img";
 
 interface IProps {
   onClose: () => void;
@@ -25,7 +28,7 @@ function SideNav(props: IProps) {
   const { open, onClose } = props;
   const { userInfo } = useAppSelector((state) => state.auth);
   const pathname = useLocation().pathname;
-  const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
 
   const itemForEachRole = () => {
     let listItems;
@@ -33,8 +36,8 @@ function SideNav(props: IProps) {
       case "user":
         listItems = userItems;
         break;
-      case "pt":
-        listItems = ptItems;
+      case "hr":
+        listItems = hrItems;
         break;
       case "admin":
         listItems = adminItems;
@@ -48,8 +51,8 @@ function SideNav(props: IProps) {
       return (
         <SideNavItem
           active={active}
-          disabled={item.disabled}
-          external={item.external}
+          // disabled={item.disabled}
+          // external={item.external}
           icon={item.icon}
           key={item.title}
           path={item.path}
@@ -60,48 +63,13 @@ function SideNav(props: IProps) {
   };
 
   const content = (
-    <Scrollbar
-      sx={{
-        height: "100%",
-        "& .simplebar-content": {
-          height: "100%",
-        },
-        "& .simplebar-scrollbar:before": {
-          background: "neutral.400",
-        },
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-        }}
-      >
+    <Scrollbar>
+      <Box className={styles.sideNavWrapper}>
         <Box sx={{ p: 3 }}>
-          <Box
-            component={Link}
-            to="/"
-            sx={{
-              display: "inline-flex",
-              height: 32,
-              width: 32,
-            }}
-          >
-            <img alt="" src="/img/logo.jpg" />
+          <Box component={Link} to="/" className={styles.logoWrapper}>
+            <img alt="" src={Img.logo} />
           </Box>
-          <Box
-            sx={{
-              alignItems: "center",
-              backgroundColor: "rgba(255, 255, 255, 0.04)",
-              borderRadius: 1,
-              cursor: "pointer",
-              display: "flex",
-              justifyContent: "space-between",
-              mt: 2,
-              p: "12px",
-            }}
-          >
+          <Box className={styles.userInfoWrapper}>
             <div>
               <Typography color="inherit" variant="subtitle1">
                 {userInfo?.lastName} {userInfo?.firstName}
@@ -116,14 +84,7 @@ function SideNav(props: IProps) {
           </Box>
         </Box>
         <Divider sx={{ borderColor: "neutral.700" }} />
-        <Box
-          component="nav"
-          sx={{
-            flexGrow: 1,
-            px: 2,
-            py: 3,
-          }}
-        >
+        <Box component="nav" sx={{ flexGrow: 1, px: 2, py: 3 }}>
           <Stack
             component="ul"
             spacing={0.5}
@@ -137,30 +98,15 @@ function SideNav(props: IProps) {
           </Stack>
         </Box>
         <Divider sx={{ borderColor: "neutral.700" }} />
-        <Box
-          sx={{
-            px: 2,
-            py: 3,
-          }}
-        >
+        <Box sx={{ px: 2, py: 3 }}>
           <Typography color="neutral.100" variant="subtitle2">
-            Arima Gym
+            Amela Technology
           </Typography>
           <Typography color="neutral.500" variant="body2">
-            69 Đường Hoàng Hà, Quận Hà Đông
+            Tầng 5, Tháp A, Toà Keangnam, Mễ Trì, Nam Từ Liêm, Hà Nội
           </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              mt: 2,
-              mx: "auto",
-              width: "160px",
-              "& img": {
-                width: "100%",
-              },
-            }}
-          >
-            <img alt="" src="/img/kit.png" />
+          <Box className={styles.kitImgWrapper}>
+            <img alt="dashboard image" src={Img.kit} />
           </Box>
           <Button
             component={Link}
