@@ -1,0 +1,10 @@
+.popoverContent {
+  padding: 1rem 1.33rem;
+}
+
+.menuList {
+  padding: 8px;
+  & > * {
+    border-radius: 8px;
+  }
+}

@@ -1,0 +1,37 @@
+@use "src/assets/breakpoints" as bp;
+$SIDE_NAV_WIDTH: 280px;
+$TOP_NAV_HEIGHT: 64px;
+
+.headerWrapper {
+  top: 0px;
+  backdrop-filter: blur(6px);
+  background-color: rgba($color: #fff, $alpha: 0.8);
+  position: sticky;
+  z-index: var(--zIndex-appBar);
+
+  @media screen and (min-width: bp.$LG) {
+    left: $SIDE_NAV_WIDTH;
+    width: calc(100% - $SIDE_NAV_WIDTH);
+  }
+}
+
+.buttonsStack {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: $TOP_NAV_HEIGHT;
+  padding: 0 16px;
+}
+
+.menuButton {
+  @media screen and (min-width: bp.$LG) {
+    display: none !important;
+  }
+}
+
+.styledAvt {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+}
