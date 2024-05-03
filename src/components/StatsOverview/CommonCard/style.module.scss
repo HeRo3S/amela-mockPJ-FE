@@ -1,0 +1,16 @@
+.card {
+  height: 100%;
+}
+
+.cardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatar {
+  &:global(.MuiAvatar-root) {
+    height: 56px;
+    width: 56px;
+  }
+}

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { format } from "date-fns";
@@ -21,9 +21,11 @@ import {
   getMyAttendance,
 } from "../api/attendance";
 import LoadingPage from "./LoadingPage";
+import { useAppSelector } from "utils/hooks/reduxToolkit";
+import AdminDashboard from "./AdminDashboard";
 
 function Dashboard() {
-  // const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useAppSelector((state) => state.auth);
   // const dispatch = useDispatch();
 
   // const { data: payments } = useQuery("total-payments", getAllPayments, {
@@ -122,7 +124,9 @@ function Dashboard() {
   //   }, 0) / 1000;
 
   return (
-    <Box>Hello</Box>
+    <Box>
+      <AdminDashboard />
+    </Box>
     // {
     // <Box
     //   component="main"

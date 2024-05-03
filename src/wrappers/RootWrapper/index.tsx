@@ -1,5 +1,4 @@
 import { ROUTERS } from "constants/routers";
-import Tasks from "pages/Tasks";
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import styles from "./styles.module.scss";
@@ -23,7 +22,6 @@ export default function AppWrapper() {
           element={<ForgotPassword />}
         ></Route>
         <Route path={ROUTERS.HOME} element={<AuthWrapper />}>
-          <Route path={ROUTERS.USER.TASKS} element={<Tasks />} />
           <Route path={ROUTERS.USER.DASHBOARD} element={<Dashboard />} />
         </Route>
       </Routes>
