@@ -1,10 +1,9 @@
-import { Box, Button, Fab, Grid, Stack, Typography } from "@mui/material";
+import { Button, Grid, Stack, Typography } from "@mui/material";
 import CommonCard from "components/StatsOverview/CommonCard";
 import AdminCardsList from "./CardsList";
 import { CustomCalendar } from "components/CustomCalendar";
 import styles from "./style.module.scss";
 import { useDialog } from "utils/hooks/useDialog";
-import CheckinDialog from "components/Dialog/ConfirmationDialog";
 import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
 
 export default function AdminDashboard() {

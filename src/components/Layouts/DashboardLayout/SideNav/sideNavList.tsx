@@ -14,8 +14,10 @@ import {
   UserCircleIcon,
   CalendarDaysIcon,
   UsersIcon,
+  BellAlertIcon,
 } from "@heroicons/react/24/solid";
 import { SvgIcon } from "@mui/material";
+import { ROUTERS } from "constants/routers";
 
 interface ListData {
   title: string;
@@ -131,7 +133,7 @@ export const hrItems = [
 export const adminItems = [
   {
     title: "Trang chủ",
-    path: "/admin/dashboard",
+    path: ROUTERS.ADMIN.DASHBOARD,
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -157,8 +159,17 @@ export const adminItems = [
     ),
   },
   {
+    title: "Tạo thông báo",
+    path: ROUTERS.ADMIN.CREATE_NOTIFICATION,
+    icon: (
+      <SvgIcon fontSize="small">
+        <BellAlertIcon />
+      </SvgIcon>
+    ),
+  },
+  {
     title: "Tạo tài khoản nhân viên",
-    path: "/account",
+    path: ROUTERS.ADMIN.CREATE_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">
         <UserPlusIcon />
@@ -167,7 +178,7 @@ export const adminItems = [
   },
   {
     title: "Nhân viên",
-    path: "/employees",
+    path: "/accounts",
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />

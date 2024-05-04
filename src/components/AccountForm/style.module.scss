@@ -1,0 +1,12 @@
+.avtCardWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .avt {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.2rem;
+  }
+}

@@ -8,6 +8,8 @@ export const ROUTERS = {
   },
   ADMIN: {
     DASHBOARD: "/admin/dashboard",
+    CREATE_ACCOUNT: "/admin/create-account",
+    CREATE_NOTIFICATION: "admin/create-notification",
   },
   USER: {
     DASHBOARD: "/user/dashboard",

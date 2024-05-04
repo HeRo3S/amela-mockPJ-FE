@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import AuthWrapper from "wrappers/AuthWrapper";
 import ScrollToTop from "wrappers/ScrollToTop";
 import AdminDashboard from "pages/Admin/AdminDashboard";
+import AdminCreateAccount from "pages/Admin/AdminCreateAccount";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -23,6 +24,7 @@ export default function AppWrapper() {
         ></Route>
         <Route path={ROUTERS.HOME} element={<AuthWrapper />}>
           <Route path={ROUTERS.ADMIN.DASHBOARD} element={<AdminDashboard />} />
+          <Route path={ROUTERS.ADMIN.CREATE_ACCOUNT} element={<AdminCreateAccount />} />
         </Route>
       </Routes>
     </div>
