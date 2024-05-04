@@ -23,9 +23,7 @@ export default function AdminDashboard() {
         {renderCards}
       </Grid>
       <Stack className={styles.calendarStack}>
-        <Typography color="text.secondary" gutterBottom>
-          Lịch chấm công tháng này
-        </Typography>
+        <Typography color="text.secondary">Lịch chấm công tháng này</Typography>
         <CustomCalendar />
       </Stack>
       <div className={styles.actionBtnsWrapper}>

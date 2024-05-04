@@ -6,9 +6,9 @@ export interface INoticeProps {
   description: string;
 }
 
-export interface EventData {
+export interface ICheckInData {
   date: string;
-  start: string;
-  end: string;
+  startTime: string | null;
+  endTime: string | null;
   status: string;
 }

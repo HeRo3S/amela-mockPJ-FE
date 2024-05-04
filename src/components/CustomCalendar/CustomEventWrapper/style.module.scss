@@ -1,6 +1,6 @@
 :global(.rbc-event) {
   background-color: transparent !important;
-  :global(.rbc-event-content) {
+  & :global(.rbc-event-content) {
     white-space: normal !important;
     color: #111;
   }

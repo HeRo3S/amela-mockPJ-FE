@@ -1,35 +1,37 @@
 import { Calendar, Views, dayjsLocalizer } from "react-big-calendar";
 import dayjs from "dayjs";
 import { useCallback, useMemo } from "react";
-import event from "./event";
-import styles from "./style.module.scss";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import classNames from "classnames";
 import CheckInData from "./checkinData";
 import CustomEventWrapper from "./CustomEventWrapper";
+import { Stack, Typography } from "@mui/material";
+import styles from "./style.module.scss";
+import "./style.module.scss";
 
 const localizer = dayjsLocalizer(dayjs);
 
 export function CustomCalendar() {
   const dayPropGetter = useCallback((date: Date) => {
     const dateKey = dayjs(date).format("YYYY/MM/DD");
-    if (CheckInData[dateKey as keyof typeof CheckInData]) {
-      let className;
-      switch (CheckInData[dateKey as keyof typeof CheckInData].status) {
-        case "FULL":
-          className = styles.ccBgDayfull;
-          break;
-        case "HALF":
-          className = styles.ccBgDayhalf;
-          break;
-        case "ABSENT":
-          className = styles.ccBgDayoff;
-          break;
-        default:
-          break;
-      }
-      return { className: className };
+    const index = CheckInData.findIndex((e) => e.date === dateKey);
+    if (index === -1) return {};
+
+    let className;
+    switch (CheckInData[index].status) {
+      case "FULL":
+        className = styles.ccBgDayfull;
+        break;
+      case "HALF":
+        className = styles.ccBgDayhalf;
+        break;
+      case "ABSENT":
+        className = styles.ccBgDayoff;
+        break;
+      default:
+        break;
     }
+    return { className: className };
   }, []);
 
   const { components, defaultDate, max, views, events } = useMemo(
@@ -39,31 +41,45 @@ export function CustomCalendar() {
       },
       defaultDate: new Date(),
       max: dayjs().endOf("day").subtract(1, "hours").toDate(),
-      views: ["month"],
+      views: { month: true },
       // convert events to the correct data type
-      events: Object.values(CheckInData).map((e) => ({
-        ...e,
-        start: e.start ? new Date(e.start) : null,
-        end: e.end ? new Date(e.end) : null,
+      events: CheckInData.map((e) => ({
+        start: e.startTime ? new Date(e.startTime) : new Date(e.date),
+        end: e.endTime ? new Date(e.endTime) : new Date(e.date),
         allDay: true,
+        data: e,
       })),
     }),
     [CheckInData]
   );
 
-  console.log(events);
-
   return (
-    <div className={styles.calendarWrapper}>
-      <Calendar
-        localizer={localizer}
-        components={components}
-        defaultDate={defaultDate}
-        dayPropGetter={dayPropGetter}
-        max={max}
-        views={views}
-        events={events}
-      ></Calendar>
-    </div>
+    <Stack flexGrow={1}>
+      <div className={styles.colorExplain}>
+        <div className={styles.colorExplainItem}>
+          <span className={classNames(styles.dot, styles.ccBgDayfull)} />
+          <Typography>Đủ công</Typography>
+        </div>
+        <div className={styles.colorExplainItem}>
+          <span className={classNames(styles.dot, styles.ccBgDayhalf)} />
+          <Typography>Thiếu công </Typography>
+        </div>
+        <div className={styles.colorExplainItem}>
+          <span className={classNames(styles.dot, styles.ccBgDayoff)} />
+          <Typography>Không có công</Typography>
+        </div>
+      </div>
+      <div className={styles.calendarWrapper}>
+        <Calendar
+          localizer={localizer}
+          components={components}
+          defaultDate={defaultDate}
+          dayPropGetter={dayPropGetter}
+          max={max}
+          views={views}
+          events={events}
+        ></Calendar>
+      </div>
+    </Stack>
   );
 }
