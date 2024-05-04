@@ -1,0 +1,22 @@
+@use "node_modules/react-big-calendar/lib/sass/styles" as s;
+// @use "node_modules/react-big-calendar/lib/addons/dragAndDrop/styles"; // if using DnD
+
+.calendarWrapper {
+  height: 600px;
+  flex-grow: 1;
+}
+
+.ccBgDayfull {
+  background-color: #bbfdb9 !important;
+  border-left: solid 3px #2ecc71 !important;
+}
+
+.ccBgDayhalf {
+  background-color: #f9e2c0 !important;
+  border-left: solid 3px #ffdba9 !important;
+}
+
+.ccBgDayoff {
+  background-color: #ffc6c6 !important;
+  border-left: solid 3px #e74c3c !important;
+}

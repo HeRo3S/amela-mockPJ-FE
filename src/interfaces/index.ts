@@ -5,3 +5,10 @@ export interface INoticeProps {
   message: string;
   description: string;
 }
+
+export interface EventData {
+  date: string;
+  start: string;
+  end: string;
+  status: string;
+}
