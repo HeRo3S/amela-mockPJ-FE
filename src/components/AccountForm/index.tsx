@@ -14,16 +14,26 @@ import styles from "./style.module.scss";
 import { DatePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, SetStateAction } from "react";
 import { IAccCreateFormData } from "interfaces";
-import { useFormik } from "formik";
 
 interface IProps {
   file: File | null;
   setFile: React.Dispatch<SetStateAction<File | null>>;
   info: IAccCreateFormData;
   setInfo: React.Dispatch<SetStateAction<IAccCreateFormData>>;
+  editingMode?: boolean | false;
+  adminMode?: boolean | false;
+  onClickSubmitForm: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 export default function AccountForm(props: IProps) {
-  const { file, setFile, info, setInfo } = props;
+  const {
+    file,
+    setFile,
+    info,
+    setInfo,
+    editingMode,
+    adminMode,
+    onClickSubmitForm,
+  } = props;
 
   function handleChangeAvtInput(e: ChangeEvent<HTMLInputElement>) {
     setFile(e.target.files ? e.target.files[0] : null);
@@ -69,7 +79,12 @@ export default function AccountForm(props: IProps) {
         <Card elevation={20}>
           <CardHeader
             title="Thông tin"
-            subheader="Nhập thông tin tài khoản tại đây"
+            subheader={
+              editingMode
+                ? "Chỉnh sửa thông tin của bạn tại đây"
+                : "Nhập thông tin tài khoản tại đây"
+            }
+            className={styles.cardFormHeader}
           />
           <CardContent>
             <Grid container spacing={3}>
@@ -98,6 +113,7 @@ export default function AccountForm(props: IProps) {
                 <TextField
                   fullWidth
                   required
+                  disabled={editingMode}
                   label="Email"
                   name="email"
                   onChange={handleFormChange}
@@ -143,21 +159,23 @@ export default function AccountForm(props: IProps) {
                   <MenuItem value="other">Khác</MenuItem>
                 </TextField>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  fullWidth
-                  required
-                  select
-                  label="Vai trò"
-                  name="role"
-                  onChange={handleFormChange}
-                  value={info.role}
-                >
-                  <MenuItem value="user">Người dùng</MenuItem>
-                  <MenuItem value="pt">PT</MenuItem>
-                  <MenuItem value="admin">Quản lý</MenuItem>
-                </TextField>
-              </Grid>
+              {adminMode && (
+                <Grid item xs={12} md={6}>
+                  <TextField
+                    fullWidth
+                    required
+                    select
+                    label="Vai trò"
+                    name="role"
+                    onChange={handleFormChange}
+                    value={info.role}
+                  >
+                    <MenuItem value="user">Người dùng</MenuItem>
+                    <MenuItem value="pt">PT</MenuItem>
+                    <MenuItem value="admin">Quản lý</MenuItem>
+                  </TextField>
+                </Grid>
+              )}
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
@@ -167,30 +185,36 @@ export default function AccountForm(props: IProps) {
                   value={info.bio}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  fullWidth
-                  required
-                  label="Mật khẩu"
-                  name="password"
-                  onChange={handleFormChange}
-                  value={info.password}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  fullWidth
-                  required
-                  label="Nhập lại mật khẩu"
-                  name="passwordConfirm"
-                  onChange={handleFormChange}
-                  value={info.passwordConfirm}
-                />
-              </Grid>
+              {!editingMode && (
+                <>
+                  <Grid item xs={12} md={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Mật khẩu"
+                      name="password"
+                      onChange={handleFormChange}
+                      value={info.password}
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Nhập lại mật khẩu"
+                      name="passwordConfirm"
+                      onChange={handleFormChange}
+                      value={info.passwordConfirm}
+                    />
+                  </Grid>
+                </>
+              )}
             </Grid>
           </CardContent>
           <CardActions className={styles.cardFormActions}>
-            <Button variant="contained">Tạo</Button>
+            <Button variant="contained" onClick={onClickSubmitForm}>
+              {editingMode ? "Lưu" : "Tạo"}
+            </Button>
           </CardActions>
         </Card>
       </Grid>

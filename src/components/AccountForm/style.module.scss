@@ -11,6 +11,13 @@
   }
 }
 
+.cardFormHeader:global(.MuiCardHeader-root) {
+  & :global(.MuiCardHeader-content) {
+    & :global(.MuiCardHeader-title) {
+      padding-bottom: 0.2rem;
+    }
+  }
+}
 .cardFormActions:global(.MuiCardActions-root) {
   justify-content: flex-end;
 }
