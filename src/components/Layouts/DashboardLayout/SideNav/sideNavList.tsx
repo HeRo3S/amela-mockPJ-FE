@@ -64,7 +64,7 @@ export const userItems: ListData[] = [
   },
   {
     title: "Tài khoản",
-    path: "/user/account",
+    path: ROUTERS.USER.MY_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">
         <UserCircleIcon />
@@ -121,7 +121,7 @@ export const hrItems = [
   },
   {
     title: "Tài khoản cá nhân",
-    path: "/account",
+    path: ROUTERS.USER.MY_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">
         <UserCircleIcon />
@@ -178,7 +178,7 @@ export const adminItems = [
   },
   {
     title: "Nhân viên",
-    path: "/accounts",
+    path: ROUTERS.ADMIN.EMPLOYEES_LIST,
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -187,7 +187,7 @@ export const adminItems = [
   },
   {
     title: "Tài khoản cá nhân",
-    path: "/account",
+    path: ROUTERS.USER.MY_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">
         <UserCircleIcon />

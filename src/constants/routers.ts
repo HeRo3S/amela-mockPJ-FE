@@ -7,12 +7,14 @@ export const ROUTERS = {
     RESET_PASSWORD: "/auth/reset-password",
   },
   ADMIN: {
+    ROOT: "/admin",
     DASHBOARD: "/admin/dashboard",
-    CREATE_ACCOUNT: "/admin/create-account",
     CREATE_NOTIFICATION: "admin/create-notification",
+    CREATE_ACCOUNT: "/admin/create-account",
+    EMPLOYEES_LIST: "/admin/employees-list",
   },
   USER: {
     DASHBOARD: "/user/dashboard",
-    TASKS: "/tasks",
+    MY_ACCOUNT: "/user/my-account",
   },
 };

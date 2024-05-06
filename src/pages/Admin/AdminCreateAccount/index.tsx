@@ -23,7 +23,7 @@ export default function AdminCreateAccount() {
 
   return (
     <div className={styles.contentWrapper}>
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h3" gutterBottom className={styles.title}>
         Tạo tài khoản
       </Typography>
       <AccountForm
