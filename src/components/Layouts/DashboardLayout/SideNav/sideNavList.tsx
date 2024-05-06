@@ -131,7 +131,7 @@ export const hrItems = [
 export const adminItems = [
   {
     title: "Trang chủ",
-    path: "/user/dashboard",
+    path: "/admin/dashboard",
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />

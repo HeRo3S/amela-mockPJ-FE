@@ -1,11 +1,10 @@
 import { ROUTERS } from "constants/routers";
-import Tasks from "pages/Tasks";
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import styles from "./styles.module.scss";
 import AuthWrapper from "wrappers/AuthWrapper";
 import ScrollToTop from "wrappers/ScrollToTop";
-import Dashboard from "pages/Dashboard";
+import AdminDashboard from "pages/Admin/AdminDashboard";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -23,8 +22,7 @@ export default function AppWrapper() {
           element={<ForgotPassword />}
         ></Route>
         <Route path={ROUTERS.HOME} element={<AuthWrapper />}>
-          <Route path={ROUTERS.USER.TASKS} element={<Tasks />} />
-          <Route path={ROUTERS.USER.DASHBOARD} element={<Dashboard />} />
+          <Route path={ROUTERS.ADMIN.DASHBOARD} element={<AdminDashboard />} />
         </Route>
       </Routes>
     </div>

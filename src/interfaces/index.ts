@@ -5,3 +5,10 @@ export interface INoticeProps {
   message: string;
   description: string;
 }
+
+export interface ICheckInData {
+  date: string;
+  startTime: string | null;
+  endTime: string | null;
+  status: string;
+}
