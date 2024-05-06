@@ -12,3 +12,16 @@ export interface ICheckInData {
   endTime: string | null;
   status: string;
 }
+
+export interface IAccCreateFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  dateOfBirth: string;
+  gender: string;
+  role: string;
+  bio: string;
+  password: string;
+  passwordConfirm: string;
+}
