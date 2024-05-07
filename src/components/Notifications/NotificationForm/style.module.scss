@@ -1,0 +1,29 @@
+.card {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+
+  .cardContent {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.33rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+
+    .date-time-wrapper {
+      display: flex;
+      gap: 1.33rem;
+      & > * {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .cardActions {
+    padding: 0.66rem 1.33rem;
+    display: flex;
+    justify-content: right;
+  }
+}

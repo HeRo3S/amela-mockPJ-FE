@@ -25,3 +25,12 @@ export interface IAccCreateFormData {
   password: string;
   passwordConfirm: string;
 }
+
+export interface IScheduleNotification {
+  [key: string]: unknown;
+  id: number;
+  author: string;
+  title: string;
+  releaseDate: string;
+  content: string;
+}
