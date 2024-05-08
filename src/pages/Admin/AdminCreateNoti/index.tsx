@@ -7,6 +7,7 @@ import { useState } from "react";
 import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
 import { IScheduleNotification, ISetScheduleNotification } from "interfaces";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
+import { useDialog } from "utils/hooks/useDialog";
 
 const INITIAL_STATE_EDITING_ITEM: IScheduleNotification = {
   id: -1,
@@ -26,14 +27,11 @@ export default function AdminCreateNoti() {
   const [editingItem, setEditingItem] = useState<IScheduleNotification>(
     NotifiesList[0] || INITIAL_STATE_EDITING_ITEM
   );
-  const [isDialogOpen, setDialogOpen] = useState(false);
-
-  const openDialog = () => {
-    setDialogOpen(true);
-  };
-  const closeDialog = () => {
-    setDialogOpen(false);
-  };
+  const {
+    open: isDialogOpen,
+    handleOpen: openDialog,
+    handleClose: closeDialog,
+  } = useDialog();
 
   const onClickListItem = (id: number) => {
     setCreateMode(false);
