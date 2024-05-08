@@ -17,7 +17,7 @@ interface IProps {
   createNewMode?: boolean | false;
   data: IScheduleNotification;
   onChangeTextFieldFn: (key: string, value: string) => void;
-  onClickHandleButton: (newValue: ISetScheduleNotification) => void;
+  onClickHandleButton: () => void;
 }
 export default function NotificationForm(props: IProps) {
   const { createNewMode, data, onClickHandleButton, onChangeTextFieldFn } =

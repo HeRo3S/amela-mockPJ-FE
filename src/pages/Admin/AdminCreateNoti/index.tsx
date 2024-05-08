@@ -63,7 +63,7 @@ export default function AdminCreateNoti() {
     NotifiesList[idx] = { ...NotifiesList[idx], ...editingItem };
     openDialog();
   }
-  function onClickHandleNewNotifyButton(newValue: ISetScheduleNotification) {
+  function onClickHandleNewNotifyButton() {
     // TODO: handle new button logic
     // *NOTE: for local data only, change in the future
     NotifiesList.push({
@@ -96,6 +96,7 @@ export default function AdminCreateNoti() {
           <Notifications
             dataList={NotifiesList}
             onClickListItem={onClickListItem}
+            selectedItemId={editingItem.id}
             adminMode
             onClickAdminCreateNewNotification={onClickCreateNewNotifyButton}
           />

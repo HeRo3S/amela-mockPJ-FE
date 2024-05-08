@@ -14,12 +14,14 @@ import { IScheduleNotification } from "interfaces";
 interface IProps {
   adminMode?: boolean | false;
   dataList: IScheduleNotification[];
+  selectedItemId: number;
   onClickListItem: (id: number) => void;
   onClickAdminCreateNewNotification?: () => void;
 }
 export default function Notifications(props: IProps) {
   const {
     dataList,
+    selectedItemId,
     onClickListItem,
     adminMode,
     onClickAdminCreateNewNotification,
@@ -40,7 +42,12 @@ export default function Notifications(props: IProps) {
       )}
       <List className={styles.list}>
         {dataList.map((e) => (
-          <NotificationItem key={e.id} data={e} onClick={onClickListItem} />
+          <NotificationItem
+            key={e.id}
+            data={e}
+            selected={e.id === selectedItemId}
+            onClick={onClickListItem}
+          />
         ))}
       </List>
     </Card>

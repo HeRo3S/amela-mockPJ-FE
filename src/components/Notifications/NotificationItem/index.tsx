@@ -6,15 +6,18 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import classNames from "classnames";
 import dayjs from "dayjs";
 import { IScheduleNotification } from "interfaces";
+import styles from "./style.module.scss";
 
 interface IProps {
   data: IScheduleNotification;
+  selected: boolean | false;
   onClick: (id: number) => void;
 }
 export default function NotificationItem(props: IProps) {
-  const { data, onClick } = props;
+  const { data, selected, onClick } = props;
   const { author, title, releaseDate, content, id } = data;
 
   function onClickListItem(
@@ -25,7 +28,10 @@ export default function NotificationItem(props: IProps) {
   }
   return (
     <ListItem>
-      <ListItemButton onClick={(e) => onClickListItem(e, id)}>
+      <ListItemButton
+        className={classNames({ [styles.selected]: selected })}
+        onClick={(e) => onClickListItem(e, id)}
+      >
         <ListItemAvatar>
           <Avatar></Avatar>
         </ListItemAvatar>
