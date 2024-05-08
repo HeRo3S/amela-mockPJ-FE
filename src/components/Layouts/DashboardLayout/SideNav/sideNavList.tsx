@@ -132,24 +132,24 @@ export const adminItems = [
       </SvgIcon>
     ),
   },
-  {
-    title: "Chấm công",
-    path: "/checkin",
-    icon: (
-      <SvgIcon fontSize="small">
-        <QrCodeIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Lịch sử chấm công",
-    path: "/attendances",
-    icon: (
-      <SvgIcon fontSize="small">
-        <CalendarDaysIcon />
-      </SvgIcon>
-    ),
-  },
+  // {
+  //   title: "Chấm công",
+  //   path: "/checkin",
+  //   icon: (
+  //     <SvgIcon fontSize="small">
+  //       <QrCodeIcon />
+  //     </SvgIcon>
+  //   ),
+  // },
+  // {
+  //   title: "Lịch sử chấm công",
+  //   path: "/attendances",
+  //   icon: (
+  //     <SvgIcon fontSize="small">
+  //       <CalendarDaysIcon />
+  //     </SvgIcon>
+  //   ),
+  // },
   {
     title: "Tạo thông báo",
     path: ROUTERS.ADMIN.CREATE_NOTIFICATION,
