@@ -6,9 +6,10 @@ import {
   Popover,
   Typography,
 } from "@mui/material";
+import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../redux/features/authSlice";
+import { logout } from "../../../../redux/features/authSlice";
+import { useAppSelector } from "utils/hooks/reduxToolkit";
 
 interface IProps {
   anchorEl: any;
@@ -21,7 +22,7 @@ function AccountPopover(props: IProps) {
   // DANGER: DO NOT MOVE
   // const navigate = useNavigate();
   // const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.auth.userInfo);
+  const userInfo = useAppSelector((state) => state.auth.userInfo);
 
   const handleSignOut = async () => {
     //DANGER: DO NOT DELETE
@@ -38,30 +39,16 @@ function AccountPopover(props: IProps) {
       }}
       onClose={onClose}
       open={open}
-      PaperProps={{ sx: { width: 200 } }}
+      slotProps={{ paper: { sx: { width: 200 } } }}
     >
-      <Box
-        sx={{
-          py: 1.5,
-          px: 2,
-        }}
-      >
+      <Box className={styles.popoverContent}>
         <Typography variant="overline">Tài Khoản</Typography>
         <Typography color="text.secondary" variant="body2">
           {userInfo?.lastName} {userInfo?.firstName}
         </Typography>
       </Box>
       <Divider />
-      <MenuList
-        disablePadding
-        dense
-        sx={{
-          p: "8px",
-          "& > *": {
-            borderRadius: 1,
-          },
-        }}
-      >
+      <MenuList disablePadding dense className={styles.menuList}>
         <MenuItem onClick={handleSignOut}>Đăng xuất</MenuItem>
       </MenuList>
     </Popover>

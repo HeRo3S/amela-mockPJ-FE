@@ -1,18 +1,15 @@
 import {
   ChartBarIcon,
   UserIcon,
-  UserGroupIcon,
   QrCodeIcon,
-  AcademicCapIcon,
-  ClipboardDocumentListIcon,
-  BanknotesIcon,
-  CurrencyDollarIcon,
-  ArrowRightOnRectangleIcon,
   UserPlusIcon,
-  DocumentPlusIcon,
-  ClipboardDocumentCheckIcon,
+  UserCircleIcon,
+  CalendarDaysIcon,
+  UsersIcon,
+  BellAlertIcon,
 } from "@heroicons/react/24/solid";
 import { SvgIcon } from "@mui/material";
+import { ROUTERS } from "constants/routers";
 
 interface ListData {
   title: string;
@@ -23,7 +20,7 @@ interface ListData {
 export const userItems: ListData[] = [
   {
     title: "Trang chủ",
-    path: "/dashboard",
+    path: "/user/dashboard",
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -31,8 +28,8 @@ export const userItems: ListData[] = [
     ),
   },
   {
-    title: "Tạo QR",
-    path: "/qrCreate",
+    title: "Chấm công",
+    path: "/user/checkin",
     icon: (
       <SvgIcon fontSize="small">
         <QrCodeIcon />
@@ -40,53 +37,35 @@ export const userItems: ListData[] = [
     ),
   },
   {
-    title: "Lớp tập",
-    path: "/classes",
+    title: "Lịch sử chấm công",
+    path: "/user/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <ClipboardDocumentListIcon />
+        <CalendarDaysIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Lớp của tôi",
-    path: "/myClass",
+    title: "Đồng nghiệp",
+    path: "/user/colleagues",
     icon: (
       <SvgIcon fontSize="small">
-        <ClipboardDocumentCheckIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Lịch sử tập",
-    path: "/attendances",
-    icon: (
-      <SvgIcon fontSize="small">
-        <ArrowRightOnRectangleIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Gói tập",
-    path: "/payment",
-    icon: (
-      <SvgIcon fontSize="small">
-        <BanknotesIcon />
+        <UsersIcon />
       </SvgIcon>
     ),
   },
   {
     title: "Tài khoản",
-    path: "/account",
+    path: ROUTERS.USER.MY_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <UserCircleIcon />
       </SvgIcon>
     ),
   },
 ];
 
-export const ptItems = [
+export const hrItems = [
   {
     title: "Trang chủ",
     path: "/dashboard",
@@ -97,29 +76,47 @@ export const ptItems = [
     ),
   },
   {
-    title: "Tạo lớp",
-    path: "/createClass",
+    title: "Chấm công",
+    path: "/checkin",
     icon: (
       <SvgIcon fontSize="small">
-        <DocumentPlusIcon />
+        <QrCodeIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Lớp của tôi",
-    path: "/myClassPT",
+    title: "Lịch sử chấm công",
+    path: "/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <ClipboardDocumentListIcon />
+        <CalendarDaysIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Tài khoản",
+    title: "Tạo tài khoản nhân viên",
     path: "/account",
     icon: (
       <SvgIcon fontSize="small">
+        <UserPlusIcon />
+      </SvgIcon>
+    ),
+  },
+  {
+    title: "Nhân viên",
+    path: "/employees",
+    icon: (
+      <SvgIcon fontSize="small">
         <UserIcon />
+      </SvgIcon>
+    ),
+  },
+  {
+    title: "Tài khoản cá nhân",
+    path: ROUTERS.USER.MY_ACCOUNT,
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserCircleIcon />
       </SvgIcon>
     ),
   },
@@ -128,7 +125,7 @@ export const ptItems = [
 export const adminItems = [
   {
     title: "Trang chủ",
-    path: "/dashboard",
+    path: ROUTERS.ADMIN.DASHBOARD,
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -136,8 +133,8 @@ export const adminItems = [
     ),
   },
   {
-    title: "Quét QR",
-    path: "/qrScan",
+    title: "Chấm công",
+    path: "/checkin",
     icon: (
       <SvgIcon fontSize="small">
         <QrCodeIcon />
@@ -145,53 +142,35 @@ export const adminItems = [
     ),
   },
   {
-    title: "Khách hàng",
-    path: "/customers",
+    title: "Lịch sử chấm công",
+    path: "/attendances",
     icon: (
       <SvgIcon fontSize="small">
-        <UserGroupIcon />
+        <CalendarDaysIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Huấn luyện viên",
-    path: "/pts",
+    title: "Tạo thông báo",
+    path: ROUTERS.ADMIN.CREATE_NOTIFICATION,
     icon: (
       <SvgIcon fontSize="small">
-        <AcademicCapIcon />
+        <BellAlertIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Lớp dạy",
-    path: "/classes",
+    title: "Tạo tài khoản nhân viên",
+    path: ROUTERS.ADMIN.CREATE_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">
-        <ClipboardDocumentListIcon />
+        <UserPlusIcon />
       </SvgIcon>
     ),
   },
   {
-    title: "Gói tập",
-    path: "/plans",
-    icon: (
-      <SvgIcon fontSize="small">
-        <BanknotesIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Giao dịch",
-    path: "/payments",
-    icon: (
-      <SvgIcon fontSize="small">
-        <CurrencyDollarIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Tài khoản",
-    path: "/account",
+    title: "Nhân viên",
+    path: ROUTERS.ADMIN.EMPLOYEES_LIST,
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -199,11 +178,11 @@ export const adminItems = [
     ),
   },
   {
-    title: "Tạo tài khoản",
-    path: "/createAccount",
+    title: "Tài khoản cá nhân",
+    path: ROUTERS.USER.MY_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">
-        <UserPlusIcon />
+        <UserCircleIcon />
       </SvgIcon>
     ),
   },

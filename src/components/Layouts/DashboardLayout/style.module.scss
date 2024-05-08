@@ -1,0 +1,20 @@
+@use "src/assets/breakpoints" as bp;
+$SIDE_NAV_WIDTH: 280px;
+$TOP_NAV_HEIGHT: 64px;
+
+.layoutRoot {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  max-width: 100%;
+  @media screen and (min-width: bp.$LG) {
+    padding-left: $SIDE_NAV_WIDTH;
+  }
+}
+
+.layoutContainer {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 0.66rem 0.66rem;
+}

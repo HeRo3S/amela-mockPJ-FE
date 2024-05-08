@@ -9,6 +9,8 @@ import { ThemeProvider } from "@mui/material";
 import MUI_THEME from "constants/muitheme";
 import { Provider } from "react-redux";
 import store from "redux/store";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export const history = createBrowserHistory();
 
@@ -27,11 +29,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <ThemeProvider theme={MUI_THEME}>
-          <HistoryRouter history={history}>
-            <React.Suspense fallback={null}>
-              <RootWrapper />
-            </React.Suspense>
-          </HistoryRouter>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <HistoryRouter history={history}>
+              <React.Suspense fallback={null}>
+                <RootWrapper />
+              </React.Suspense>
+            </HistoryRouter>
+          </LocalizationProvider>
         </ThemeProvider>
       </Provider>
       {configs.APP_ENV !== "prod" && (
