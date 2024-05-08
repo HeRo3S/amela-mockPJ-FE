@@ -15,17 +15,17 @@ interface IProps {
 }
 export default function NotificationItem(props: IProps) {
   const { data, onClick } = props;
-  const { author, title, releaseDate, content } = data;
+  const { author, title, releaseDate, content, id } = data;
 
   function onClickListItem(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     id: number
   ) {
     onClick(id);
   }
   return (
     <ListItem>
-      <ListItemButton onClick={(e) => onClickListItem(e, data.id)}>
+      <ListItemButton onClick={(e) => onClickListItem(e, id)}>
         <ListItemAvatar>
           <Avatar></Avatar>
         </ListItemAvatar>

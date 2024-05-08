@@ -34,3 +34,11 @@ export interface IScheduleNotification {
   releaseDate: string;
   content: string;
 }
+export interface ISetScheduleNotification {
+  [key: string]: unknown;
+  id?: number;
+  author?: string;
+  title?: string;
+  releaseDate?: string;
+  content?: string;
+}

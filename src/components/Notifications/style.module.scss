@@ -4,6 +4,17 @@
   overflow-y: scroll;
 }
 
+.adminActionWrapper {
+  display: flex;
+  & > button {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 100%;
+    display: flex;
+    background-color: #e5eaf1;
+  }
+}
+
 .list {
   padding: 1rem 1rem;
 }

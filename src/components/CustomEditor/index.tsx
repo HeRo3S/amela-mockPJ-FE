@@ -4,9 +4,10 @@ import "./editor.style.scss";
 
 interface IProps {
   data?: string;
+  onChangeFunction: (key: string, value: string) => void;
 }
 export default function CustomEditor(props: IProps) {
-  const { data } = props;
+  const { data, onChangeFunction } = props;
   return (
     <CKEditor
       editor={ClassicEditor}
@@ -15,8 +16,9 @@ export default function CustomEditor(props: IProps) {
         // You can store the "editor" and use when it is needed.
         console.log("Editor is ready to use!", editor);
       }}
-      onChange={(event) => {
+      onChange={(event, editor) => {
         console.log(event);
+        onChangeFunction("content", editor.getData());
       }}
       onBlur={(event, editor) => {
         console.log("Blur.", editor);
