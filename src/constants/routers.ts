@@ -16,5 +16,6 @@ export const ROUTERS = {
   USER: {
     DASHBOARD: "/user/dashboard",
     MY_ACCOUNT: "/user/my-account",
+    NOTIFICATION: "/notification/:id"
   },
 };
