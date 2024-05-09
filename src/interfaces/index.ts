@@ -21,6 +21,7 @@ export interface IAccCreateFormData {
   dateOfBirth: string;
   gender: string;
   role: string;
+  division: string;
   bio: string;
   password: string;
   passwordConfirm: string;

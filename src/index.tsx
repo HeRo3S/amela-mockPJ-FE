@@ -2,9 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 import "assets/index.global.scss";
 import "i18n/i18n";
+
+import { makeServer } from "mocks/mirage/server";
+
+if (process.env.NODE_ENV === "development") {
+  makeServer({ environment: "development" });
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

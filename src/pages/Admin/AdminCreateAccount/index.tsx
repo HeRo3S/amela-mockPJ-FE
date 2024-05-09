@@ -16,6 +16,7 @@ export default function AdminCreateAccount() {
     dateOfBirth: "",
     gender: "",
     role: "",
+    division: "",
     bio: "",
     password: "",
     passwordConfirm: "",
