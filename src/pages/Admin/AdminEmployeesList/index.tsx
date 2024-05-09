@@ -6,12 +6,9 @@ import { createMultipleEmployees } from "mocks/objects/employeesList";
 import { useEffect } from "react";
 
 export default function EmployeesList() {
-  useEffect(() => {
-    fetch("https://example.com/employeesList")
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-      });
+  useEffect(async () => {
+    const data = await sendGet("/admin/employees-list");
+    console.log(data);
   }, []);
 
   return (
