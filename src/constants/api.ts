@@ -1,7 +1,7 @@
 import configs from "./config";
 
 const API = {
-  GET_EMPLOYEES_LIST: configs.API_DOMAIN + "/employeesList",
+  GET_EMPLOYEES_LIST: "admin/employeesList",
 };
 
 export default API;

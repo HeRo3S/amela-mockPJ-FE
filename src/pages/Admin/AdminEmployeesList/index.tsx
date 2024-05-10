@@ -1,20 +1,43 @@
-import { sendGet } from "api/axios";
+import { GetEmployeesList } from "api/employeesList";
+import Loading from "components/Loading";
 import Search from "components/Search";
 import UsersTable from "components/Tables/UsersTable";
-import configs from "constants/config";
-import { createMultipleEmployees } from "mocks/objects/employeesList";
-import { useEffect } from "react";
+import API from "constants/api";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
-export default function EmployeesList() {
-  useEffect(async () => {
-    const data = await sendGet("/admin/employees-list");
-    console.log(data);
-  }, []);
+export default function AdminEmployeesList() {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(7);
+
+  const { isLoading, data, error } = useQuery(
+    [API.GET_EMPLOYEES_LIST, page, rowsPerPage],
+    () => GetEmployeesList(page, rowsPerPage)
+  );
+
+  const changeRowsPerPage = (rowsPerPage: number) => {
+    setRowsPerPage(rowsPerPage);
+  };
+
+  const changePage = (page: number) => {
+    setPage(page);
+  };
 
   return (
     <div>
       <Search />
-      <UsersTable data={createMultipleEmployees(30)} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <UsersTable
+          data={data.pageData}
+          count={data.length}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          onPageChange={changePage}
+          onRowsPerPageChange={changeRowsPerPage}
+        />
+      )}
     </div>
   );
 }
