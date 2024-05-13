@@ -26,7 +26,11 @@ export interface IAccCreateFormData {
   password: string;
   passwordConfirm: string;
 }
-
+export interface IGetAccInfo extends IAccCreateFormData {
+  [key: string]: unknown;
+  _id: string;
+  avtString: string;
+}
 export interface IScheduleNotification {
   [key: string]: unknown;
   id: number;

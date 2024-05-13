@@ -1,0 +1,17 @@
+.nameCell:global(.MuiTableCell-root) {
+  display: flex;
+  align-items: center;
+
+  & :global(.MuiAvatar-root) {
+    margin-right: 0.66rem;
+  }
+}
+
+.actionCell {
+  display: flex;
+  align-items: center;
+  gap: 0.66rem;
+  & > * {
+    cursor: pointer;
+  }
+}

@@ -3,6 +3,7 @@ import MockEmployessListData from "../objects/employeesList";
 import configs from "constants/config";
 import { applyPagination } from "utils/hooks/applyPagination";
 import API from "constants/api";
+import { request } from "http";
 
 export const handlers = [
   http.get("/api/user", () => {
@@ -15,8 +16,11 @@ export const handlers = [
 
     const page = url.searchParams.get("page");
     const size = url.searchParams.get("size");
+    const searchKey = url.searchParams.get("searchKey");
 
-    const data = MockEmployessListData;
+    const data = MockEmployessListData.filter((e) =>
+      `${e.lastName} ${e.firstName}`.includes(searchKey || "")
+    );
     if (!page || !size)
       return HttpResponse.json(
         { message: "cannot find page and size" },
@@ -26,5 +30,10 @@ export const handlers = [
       pageData: applyPagination(data, +page, +size),
       length: MockEmployessListData.length,
     });
+  }),
+
+  http.get(`${configs.API_DOMAIN}${API.GET_EMPLOYEES_ID}/:id`, ({ params }) => {
+    const result = MockEmployessListData.find((e) => e._id === params.id);
+    return HttpResponse.json(result);
   }),
 ];

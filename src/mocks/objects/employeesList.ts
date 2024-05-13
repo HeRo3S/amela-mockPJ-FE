@@ -11,6 +11,7 @@ interface IUser {
   role: string;
   division: string;
   bio: string;
+  avtString: string;
 }
 
 function createRandomEmployee(): IUser {
@@ -38,6 +39,7 @@ function createRandomEmployee(): IUser {
     "Warrior",
     "Faderless",
   ]);
+  const avtString = fakerVI.image.avatar();
 
   const randomUser: IUser = {
     _id,
@@ -50,6 +52,7 @@ function createRandomEmployee(): IUser {
     role,
     bio,
     division,
+    avtString,
   };
   return randomUser;
 }

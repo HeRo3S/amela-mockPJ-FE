@@ -11,6 +11,8 @@ import AdminEmployeesList from "pages/Admin/AdminEmployeesList";
 import MyAccount from "pages/User/MyAccount";
 import AdminCreateNoti from "pages/Admin/AdminCreateNoti";
 import NotificationPost from "pages/NotificationPost";
+import ViewAccount from "pages/User/ViewAccount";
+import AdminEditAccount from "pages/Admin/AdminEditAccount";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -35,6 +37,7 @@ export default function AppWrapper() {
             element={<NotificationPost />}
           />
           <Route path={ROUTERS.USER.MY_ACCOUNT} element={<MyAccount />} />
+          <Route path={ROUTERS.USER.SEE_PROFILE} element={<ViewAccount />} />
         </Route>
 
         <Route path={ROUTERS.ADMIN.ROOT} element={<AdminWrapper />}>
@@ -51,9 +54,12 @@ export default function AppWrapper() {
             path={ROUTERS.ADMIN.EMPLOYEES_LIST}
             element={<AdminEmployeesList />}
           />
+          <Route
+            path={ROUTERS.ADMIN.EDIT_ACCOUNT}
+            element={<AdminEditAccount />}
+          />
         </Route>
       </Routes>
     </div>
   );
 }
-
