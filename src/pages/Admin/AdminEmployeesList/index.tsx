@@ -8,6 +8,9 @@ import { IGetAccInfo } from "interfaces";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import styles from "./style.module.scss";
+import { Typography } from "@mui/material";
+import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 
 export default function AdminEmployeesList() {
   const navigate = useNavigate();
@@ -38,7 +41,8 @@ export default function AdminEmployeesList() {
   };
 
   return (
-    <div>
+    <div className={styles.contentWrapper}>
+      <PageTitle text="Danh sách nhân viên" />
       <Search
         onKeyDown={handleOnSearchKeyDown}
         placeholder="Tìm kiếm theo tên..."

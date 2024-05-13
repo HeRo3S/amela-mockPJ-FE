@@ -1,5 +1,6 @@
 import {
   Avatar,
+  IconButton,
   SvgIcon,
   Table,
   TableBody,
@@ -54,28 +55,28 @@ export default function UsersTable(props: IProps) {
   };
 
   const onClickViewInfoButton = (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>,
-    data: IAccCreateFormData
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    data: IGetAccInfo
   ) => {
     parentOnClickViewInfoButton(data);
   };
   const onClickEditInfoButton = (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>,
-    data: IAccCreateFormData
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    data: IGetAccInfo
   ) => {
     parentOnClickEditInfoButton(data);
   };
 
   return (
-    <>
-      <Table>
+    <div className={styles.tableWrapper}>
+      <Table className={styles.table}>
         <TableHead>
           <TableRow>
             <TableCell>Tên nhân viên</TableCell>
-            <TableCell>Email</TableCell>
+            <TableCell className={styles.emailColumn}>Email</TableCell>
             <TableCell>Bộ phận</TableCell>
             <TableCell>Chức vụ</TableCell>
-            <TableCell>Giới tinh</TableCell>
+            <TableCell className={styles.genderColumn}>Giới tinh</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
@@ -86,22 +87,26 @@ export default function UsersTable(props: IProps) {
                 <Avatar src={e.avtString} />
                 <Typography>{e.lastName + " " + e.firstName}</Typography>
               </TableCell>
-              <TableCell>{e.email}</TableCell>
+              <TableCell className={styles.emailColumn}>{e.email}</TableCell>
               <TableCell>{e.division}</TableCell>
               <TableCell>{e.role}</TableCell>
-              <TableCell>{e.gender}</TableCell>
+              <TableCell className={styles.genderColumn}>{e.gender}</TableCell>
               <TableCell className={styles.actionCell}>
-                <SvgIcon color="secondary">
-                  <DocumentMagnifyingGlassIcon
-                    onClick={(event) => onClickViewInfoButton(event, e)}
-                  />
-                </SvgIcon>
-                {adminMode && (
-                  <SvgIcon color="success">
-                    <PencilSquareIcon
-                      onClick={(event) => onClickEditInfoButton(event, e)}
-                    />
+                <IconButton
+                  onClick={(event) => onClickViewInfoButton(event, e)}
+                >
+                  <SvgIcon color="secondary">
+                    <DocumentMagnifyingGlassIcon />
                   </SvgIcon>
+                </IconButton>
+                {adminMode && (
+                  <IconButton
+                    onClick={(event) => onClickEditInfoButton(event, e)}
+                  >
+                    <SvgIcon color="success">
+                      <PencilSquareIcon />
+                    </SvgIcon>
+                  </IconButton>
                 )}
               </TableCell>
             </TableRow>
@@ -115,6 +120,6 @@ export default function UsersTable(props: IProps) {
           onRowsPerPageChange={onRowsPerPageChange}
         />
       </Table>
-    </>
+    </div>
   );
 }

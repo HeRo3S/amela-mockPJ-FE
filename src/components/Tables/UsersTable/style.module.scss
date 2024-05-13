@@ -1,3 +1,22 @@
+@use "src/assets/breakpoints" as bp;
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.emailColumn:global(.MuiTableCell-root) {
+  @media screen and (max-width: bp.$MD) {
+    display: none;
+  }
+}
+
+.genderColumn:global(.MuiTableCell-root) {
+  @media screen and (max-width: bp.$SM) {
+    display: none;
+  }
+}
+
 .nameCell:global(.MuiTableCell-root) {
   display: flex;
   align-items: center;
@@ -7,7 +26,7 @@
   }
 }
 
-.actionCell {
+.actionCell:global(.MuiTableCell-root) {
   display: flex;
   align-items: center;
   gap: 0.66rem;
