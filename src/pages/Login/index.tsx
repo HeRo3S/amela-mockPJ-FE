@@ -43,14 +43,15 @@ function Login() {
     onSubmit: async (values) => {
       try {
         setIsLoading(true);
-        await dispatch(
+        const originalResult = await dispatch(
           login({
             email: values.email,
             password: values.password,
           })
         ).unwrap();
         setIsLoading(false);
-        navigate("/dashboard");
+        if (originalResult.user.role === "admin") navigate("/admin/dashboard");
+        else navigate("/user/dashboard");
       } catch (err) {
         setIsLoading(false);
       }

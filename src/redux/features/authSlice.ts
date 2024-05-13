@@ -7,14 +7,14 @@ import { isAxiosError } from "axios";
 
 const initialState = {
   userInfo: {
-    lastName: "Lê",
-    firstName: "Hùng",
-    role: "admin",
-    email: "hero3s.vn@gmail.com",
-    phoneNumber: "083xxxxxxxx",
-    dateOfBirth: "2001/25/09",
-    gender: "male",
-    bio: "",
+    // lastName: "Lê",
+    // firstName: "Hùng",
+    // role: "admin",
+    // email: "hero3s.vn@gmail.com",
+    // phoneNumber: "083xxxxxxxx",
+    // dateOfBirth: "2001/25/09",
+    // gender: "male",
+    // bio: "",
   },
   token: "",
   isLoggedIn: false,

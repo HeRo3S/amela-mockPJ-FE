@@ -17,13 +17,14 @@ export const ROUTERS = {
     EDIT_ACCOUNT: `/admin/edit-account/:id`,
   },
   USER: {
+    ROOT: "/user",
     DASHBOARD: "/user/dashboard",
     MY_ACCOUNT: "/user/my-account",
 
-    ORIGINAL_NOTIFICATION: "/notification",
-    NOTIFICATION: "/notification/:id",
+    ORIGINAL_NOTIFICATION: "/user/notification",
+    NOTIFICATION: "/user/notification/:id",
 
-    ORIGINAL_SEE_PROFILE: "/see-profile",
-    SEE_PROFILE: `/see-profile/:id`,
+    ORIGINAL_SEE_PROFILE: "/user/see-profile",
+    SEE_PROFILE: `/user/see-profile/:id`,
   },
 };

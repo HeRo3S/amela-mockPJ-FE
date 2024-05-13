@@ -30,7 +30,7 @@ export const handlers = [
       );
     }
     const { password, ...userInfo } = existedAcc;
-    return HttpResponse.json(userInfo);
+    return HttpResponse.json({ user: userInfo });
   }),
 
   // https://something.com/admin/employees-list?page={page}&size={size}
