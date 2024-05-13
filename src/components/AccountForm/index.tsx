@@ -6,7 +6,6 @@ import {
   CardContent,
   CardHeader,
   Grid,
-  InputLabel,
   MenuItem,
   TextField,
   Typography,
@@ -15,7 +14,6 @@ import styles from "./style.module.scss";
 import { DatePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, SetStateAction } from "react";
 import { IAccCreateFormData } from "interfaces";
-import CustomTextField from "components/CustomInput/ReadonlyTextField";
 
 interface IProps {
   file: File | null;
@@ -52,7 +50,9 @@ export default function AccountForm(props: IProps) {
             <div className={styles.avtCardWrapper}>
               <Avatar
                 className={styles.avt}
-                src={file ? URL.createObjectURL(file) : undefined}
+                src={
+                  file ? URL.createObjectURL(file) : info.avtString || undefined
+                }
               ></Avatar>
               <Typography gutterBottom variant="h5">
                 {info.lastName + info.firstName

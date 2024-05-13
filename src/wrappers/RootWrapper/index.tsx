@@ -13,6 +13,7 @@ import AdminCreateNoti from "pages/Admin/AdminCreateNoti";
 import NotificationPost from "pages/NotificationPost";
 import ViewAccount from "pages/User/ViewAccount";
 import AdminEditAccount from "pages/Admin/AdminEditAccount";
+import GlobalAlert from "components/Alert/GlobalAlert";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -22,6 +23,7 @@ export default function AppWrapper() {
   return (
     <div className={styles.rootWrapper}>
       <ScrollToTop />
+      <GlobalAlert />
 
       <Routes>
         <Route path={ROUTERS.AUTH.LOGIN} element={<Login />} />

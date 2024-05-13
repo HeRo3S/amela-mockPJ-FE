@@ -3,13 +3,36 @@ import MockEmployessListData from "../objects/employeesList";
 import configs from "constants/config";
 import { applyPagination } from "utils/hooks/applyPagination";
 import API from "constants/api";
-import { request } from "http";
+import MockAccounts from "mocks/objects/userAccount";
 
 export const handlers = [
   http.get("/api/user", () => {
     console.log("Hello!");
     return HttpResponse.json({ name: "John Maverick" });
   }),
+
+  http.post(configs.API_DOMAIN + API.LOG_IN, async ({ request }) => {
+    const account = (await request.json()) as {
+      email: string;
+      password: string;
+    };
+    if (!account?.email)
+      return HttpResponse.json(
+        { message: "wrong credentials!" },
+        { status: 401 }
+      );
+
+    const existedAcc = MockAccounts.find((e) => e.email === account.email);
+    if (existedAcc?.password !== account.password) {
+      return HttpResponse.json(
+        { message: "wrong credentials!" },
+        { status: 401 }
+      );
+    }
+    const { password, ...userInfo } = existedAcc;
+    return HttpResponse.json(userInfo);
+  }),
+
   // https://something.com/admin/employees-list?page={page}&size={size}
   http.get(configs.API_DOMAIN + API.GET_EMPLOYEES_LIST, ({ request }) => {
     const url = new URL(request.url);

@@ -1,6 +1,6 @@
 import { fakerVI } from "@faker-js/faker";
 
-interface IUser {
+export interface IMockUser {
   _id: string;
   firstName: string;
   lastName: string;
@@ -14,7 +14,7 @@ interface IUser {
   avtString: string;
 }
 
-function createRandomEmployee(): IUser {
+function createRandomEmployee(): IMockUser {
   const _id = fakerVI.string.uuid();
   const sexType = fakerVI.person.sexType();
   const gender = fakerVI.person.sex();
