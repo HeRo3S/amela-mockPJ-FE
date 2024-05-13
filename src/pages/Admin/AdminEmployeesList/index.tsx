@@ -9,7 +9,6 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
-import { Typography } from "@mui/material";
 import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 
 export default function AdminEmployeesList() {
@@ -32,7 +31,9 @@ export default function AdminEmployeesList() {
   const handleOnClickEditButton = (data: IGetAccInfo) => {
     navigate(`${ROUTERS.ADMIN.ORIGINAL_EDIT_ACCOUNT}/${data._id}`);
   };
-  const handleOnClickViewButton = (data: IGetAccInfo) => {};
+  const handleOnClickViewButton = (data: IGetAccInfo) => {
+    navigate(`${ROUTERS.USER.ORIGINAL_SEE_PROFILE}/${data._id}`);
+  };
   const changeRowsPerPage = (rowsPerPage: number) => {
     setRowsPerPage(rowsPerPage);
   };

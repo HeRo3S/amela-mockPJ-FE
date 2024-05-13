@@ -9,11 +9,13 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import API from "constants/api";
 import { GetEmployeeInfoByID } from "api/employeesList";
+import Loading from "components/Loading";
+import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 
 export default function AdminEditAccount() {
   const { id } = useParams();
 
-  const { data } = useQuery([API.GET_EMPLOYEES_ID, id], () =>
+  const { isLoading, data } = useQuery([API.GET_EMPLOYEES_ID, id], () =>
     GetEmployeeInfoByID(id as string)
   );
 
@@ -24,7 +26,6 @@ export default function AdminEditAccount() {
 
   useEffect(() => {
     if (data) setAccData((prev) => (prev = { ...data }));
-    console.log(accData, data);
   }, [data]);
 
   const {
@@ -38,6 +39,8 @@ export default function AdminEditAccount() {
     handleDialogOpen();
   }
 
+  if (isLoading) return <Loading />;
+
   return (
     <div className={styles.contentWrapper}>
       <ConfirmationDialog
@@ -48,9 +51,7 @@ export default function AdminEditAccount() {
         onClose={handleDialogClose}
         success
       />
-      <Typography variant="h3" gutterBottom className={styles.title}>
-        Chỉnh sửa tài khoản
-      </Typography>
+      <PageTitle text="Chỉnh sửa tài khoản" />
       <AccountForm
         file={file}
         setFile={setFile}

@@ -6,6 +6,7 @@ import {
   CardContent,
   CardHeader,
   Grid,
+  InputLabel,
   MenuItem,
   TextField,
   Typography,
@@ -14,6 +15,7 @@ import styles from "./style.module.scss";
 import { DatePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, SetStateAction } from "react";
 import { IAccCreateFormData } from "interfaces";
+import CustomTextField from "components/CustomInput/ReadonlyTextField";
 
 interface IProps {
   file: File | null;
