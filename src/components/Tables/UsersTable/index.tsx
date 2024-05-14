@@ -10,7 +10,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { IAccCreateFormData, IGetAccInfo } from "interfaces";
+import { IGetAccInfo } from "interfaces";
 import styles from "./style.module.scss";
 import {
   DocumentMagnifyingGlassIcon,
@@ -117,6 +117,7 @@ export default function UsersTable(props: IProps) {
           onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[7,10,15,20]}
           onRowsPerPageChange={onRowsPerPageChange}
         />
       </Table>

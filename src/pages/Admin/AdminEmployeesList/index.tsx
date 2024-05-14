@@ -14,7 +14,7 @@ import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 export default function AdminEmployeesList() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(7);
   const [searchKey, setSearchKey] = useState("");
 
   const { isLoading, data, error } = useQuery(
