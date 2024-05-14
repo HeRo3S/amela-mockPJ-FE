@@ -1,0 +1,5 @@
+:global(.MuiListItemButton-root) {
+  &.selected {
+    background-color: var(--neutral-color-200);
+  }
+}

@@ -12,4 +12,9 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  build: {
+    commonjsOptions: {
+      include: [/@workspace\/ckeditor5-custom-build/, /node_modules/],
+    },
+  },
 });

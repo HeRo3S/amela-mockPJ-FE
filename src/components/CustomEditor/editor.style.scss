@@ -1,0 +1,17 @@
+.ck.ck-editor {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .ck.ck-editor__main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .ck.ck-content.ck-editor__editable {
+      flex-grow: 1;
+      max-height: 350px;
+      border-radius: 0 0 8px 8px;
+    }
+  }
+}

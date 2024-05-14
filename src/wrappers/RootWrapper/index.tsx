@@ -10,6 +10,7 @@ import AdminCreateAccount from "pages/Admin/AdminCreateAccount";
 import AdminEmployeesList from "pages/Admin/AdminEmployeesList";
 import MyAccount from "pages/User/MyAccount";
 import AdminCreateNoti from "pages/Admin/AdminCreateNoti";
+import NotificationPost from "pages/NotificationPost";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -29,6 +30,10 @@ export default function AppWrapper() {
         ></Route>
 
         <Route path={ROUTERS.HOME} element={<AuthWrapper />}>
+          <Route
+            path={ROUTERS.USER.NOTIFICATION}
+            element={<NotificationPost />}
+          />
           <Route path={ROUTERS.USER.MY_ACCOUNT} element={<MyAccount />} />
         </Route>
 
@@ -51,3 +56,4 @@ export default function AppWrapper() {
     </div>
   );
 }
+
