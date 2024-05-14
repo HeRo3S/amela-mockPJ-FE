@@ -16,6 +16,7 @@ import GlobalAlert from "components/Alert/GlobalAlert";
 import AdminWrapper from "wrappers/AuthWrapper/AdminWrapper";
 import NotFound from "components/NotFound";
 import UserDashboard from "pages/User/Dashboard";
+import Colleagues from "pages/User/Colleagues";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -43,6 +44,7 @@ export default function AppWrapper() {
               element={<NotificationPost />}
             />
             <Route path={ROUTERS.USER.MY_ACCOUNT} element={<MyAccount />} />
+            <Route path={ROUTERS.USER.COLLEAGUES} element={<Colleagues />} />
             <Route path={ROUTERS.USER.SEE_PROFILE} element={<ViewAccount />} />
           </Route>
 
@@ -74,4 +76,3 @@ export default function AppWrapper() {
     </div>
   );
 }
-

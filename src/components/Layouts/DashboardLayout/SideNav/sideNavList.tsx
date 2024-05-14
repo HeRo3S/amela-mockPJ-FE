@@ -27,27 +27,9 @@ export const userItems: ListData[] = [
       </SvgIcon>
     ),
   },
-  // {
-  //   title: "Chấm công",
-  //   path: "/user/checkin",
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <QrCodeIcon />
-  //     </SvgIcon>
-  //   ),
-  // },
-  // {
-  //   title: "Lịch sử chấm công",
-  //   path: "/user/attendances",
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <CalendarDaysIcon />
-  //     </SvgIcon>
-  //   ),
-  // },
   {
     title: "Đồng nghiệp",
-    path: "/user/colleagues",
+    path: ROUTERS.USER.COLLEAGUES,
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />

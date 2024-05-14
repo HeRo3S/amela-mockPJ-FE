@@ -9,6 +9,7 @@ export const ROUTERS = {
   USER: {
     ROOT: "/user",
     DASHBOARD: "/user/dashboard",
+    COLLEAGUES: "/user/colleagues",
     MY_ACCOUNT: "/user/my-account",
 
     ORIGINAL_NOTIFICATION: "/user/notification",

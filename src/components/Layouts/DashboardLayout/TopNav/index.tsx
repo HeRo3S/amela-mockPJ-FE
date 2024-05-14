@@ -1,8 +1,15 @@
 import Bars3Icon from "@heroicons/react/24/solid/Bars3Icon";
-import { Avatar, Box, Button, IconButton, Stack, SvgIcon } from "@mui/material";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  SvgIcon,
+} from "@mui/material";
 import { usePopover } from "utils/hooks/usePopover";
 import AccountPopover from "../AccountPopover";
-import { useSelector } from "react-redux";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
 import styles from "./style.module.scss";
 import NotificationPopper from "../NotificationsPopper";
@@ -34,9 +41,11 @@ function TopNav(props: IProps) {
               onClick={notificationPopper.handleToggle}
               ref={notificationPopper.anchorRef}
             >
-              <SvgIcon>
-                <BellIcon />
-              </SvgIcon>
+              <Badge badgeContent={5} color="error">
+                <SvgIcon>
+                  <BellIcon />
+                </SvgIcon>
+              </Badge>
             </Button>
             <Avatar
               className={styles.styledAvt}
