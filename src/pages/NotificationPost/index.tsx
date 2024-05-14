@@ -14,6 +14,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import styles from "./style.module.scss";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
+import CkEditorContentRenderer from "components/CustomEditor/CkEditorContentRenderer";
 
 export default function NotificationPost() {
   const { id } = useParams();
@@ -27,12 +28,6 @@ export default function NotificationPost() {
   if (!data) {
     console.error("can't find notification ID");
     return <NotFound />;
-  }
-
-  function ParsingCKEditiorContent(content: string) {
-    const parser = new DOMParser();
-    const htmlDoc = parser.parseFromString(content, "text/html");
-    return htmlDoc.body.innerHTML;
   }
 
   function onClickNavigateHomeButton() {
@@ -54,7 +49,7 @@ export default function NotificationPost() {
                 color="text.secondary"
                 sx={{ display: "inline-block" }}
               >{`\u00A0- ${dayjs(data.releaseDate).format(
-                "DD/MM/YYYY"
+                "DD/MM/YYYY",
               )}`}</Typography>
             </Typography>
           }
@@ -62,9 +57,7 @@ export default function NotificationPost() {
         />
 
         <CardContent>
-          <Typography paragraph>
-            {ParsingCKEditiorContent(data.content)}
-          </Typography>
+            <CkEditorContentRenderer content={data.content} />
         </CardContent>
         <CardActions className={styles.cardActions}>
           <Button

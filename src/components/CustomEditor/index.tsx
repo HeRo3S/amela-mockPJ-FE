@@ -18,6 +18,7 @@ export default function CustomEditor(props: IProps) {
       }}
       onChange={(event, editor) => {
         console.log(event);
+        console.log(editor.getData());
         onChangeFunction("content", editor.getData());
       }}
       onBlur={(event, editor) => {
