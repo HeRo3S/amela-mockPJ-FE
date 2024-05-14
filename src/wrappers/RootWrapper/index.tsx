@@ -15,6 +15,7 @@ import AdminEditAccount from "pages/Admin/AdminEditAccount";
 import GlobalAlert from "components/Alert/GlobalAlert";
 import AdminWrapper from "wrappers/AuthWrapper/AdminWrapper";
 import NotFound from "components/NotFound";
+import UserDashboard from "pages/User/Dashboard";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -35,14 +36,15 @@ export default function AppWrapper() {
         ></Route>
 
         <Route path={ROUTERS.HOME} element={<AuthWrapper />}>
-          <Route path={ROUTERS.USER.ROOT}></Route>
-
-          <Route
-            path={ROUTERS.USER.NOTIFICATION}
-            element={<NotificationPost />}
-          />
-          <Route path={ROUTERS.USER.MY_ACCOUNT} element={<MyAccount />} />
-          <Route path={ROUTERS.USER.SEE_PROFILE} element={<ViewAccount />} />
+          <Route path={ROUTERS.USER.ROOT}>
+            <Route path={ROUTERS.USER.DASHBOARD} element={<UserDashboard />} />
+            <Route
+              path={ROUTERS.USER.NOTIFICATION}
+              element={<NotificationPost />}
+            />
+            <Route path={ROUTERS.USER.MY_ACCOUNT} element={<MyAccount />} />
+            <Route path={ROUTERS.USER.SEE_PROFILE} element={<ViewAccount />} />
+          </Route>
 
           <Route path={ROUTERS.ADMIN.ROOT} element={<AdminWrapper />}>
             <Route
@@ -72,3 +74,4 @@ export default function AppWrapper() {
     </div>
   );
 }
+

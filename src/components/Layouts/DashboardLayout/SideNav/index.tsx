@@ -32,20 +32,13 @@ function SideNav(props: IProps) {
 
   const itemForEachRole = () => {
     let listItems;
-    switch (userInfo?.role) {
-      case "user":
-        listItems = userItems;
-        break;
-      case "hr":
-        listItems = hrItems;
-        break;
-      case "admin":
-        listItems = adminItems;
-        break;
-      default:
-        console.error("Cannot find user role!");
-        return;
+    if (!userInfo?.role) {
+      console.error("Cannot find user role!");
+      return;
     }
+    if (userInfo?.role === "admin") listItems = adminItems;
+    else listItems = userItems;
+
     return listItems.map((item) => {
       const active = item.path ? pathname === item.path : false;
       return (

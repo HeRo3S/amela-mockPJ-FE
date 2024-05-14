@@ -27,24 +27,24 @@ export const userItems: ListData[] = [
       </SvgIcon>
     ),
   },
-  {
-    title: "Chấm công",
-    path: "/user/checkin",
-    icon: (
-      <SvgIcon fontSize="small">
-        <QrCodeIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Lịch sử chấm công",
-    path: "/user/attendances",
-    icon: (
-      <SvgIcon fontSize="small">
-        <CalendarDaysIcon />
-      </SvgIcon>
-    ),
-  },
+  // {
+  //   title: "Chấm công",
+  //   path: "/user/checkin",
+  //   icon: (
+  //     <SvgIcon fontSize="small">
+  //       <QrCodeIcon />
+  //     </SvgIcon>
+  //   ),
+  // },
+  // {
+  //   title: "Lịch sử chấm công",
+  //   path: "/user/attendances",
+  //   icon: (
+  //     <SvgIcon fontSize="small">
+  //       <CalendarDaysIcon />
+  //     </SvgIcon>
+  //   ),
+  // },
   {
     title: "Đồng nghiệp",
     path: "/user/colleagues",
@@ -56,63 +56,6 @@ export const userItems: ListData[] = [
   },
   {
     title: "Tài khoản",
-    path: ROUTERS.USER.MY_ACCOUNT,
-    icon: (
-      <SvgIcon fontSize="small">
-        <UserCircleIcon />
-      </SvgIcon>
-    ),
-  },
-];
-
-export const hrItems = [
-  {
-    title: "Trang chủ",
-    path: "/dashboard",
-    icon: (
-      <SvgIcon fontSize="small">
-        <ChartBarIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Chấm công",
-    path: "/checkin",
-    icon: (
-      <SvgIcon fontSize="small">
-        <QrCodeIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Lịch sử chấm công",
-    path: "/attendances",
-    icon: (
-      <SvgIcon fontSize="small">
-        <CalendarDaysIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Tạo tài khoản nhân viên",
-    path: "/account",
-    icon: (
-      <SvgIcon fontSize="small">
-        <UserPlusIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Nhân viên",
-    path: "/employees",
-    icon: (
-      <SvgIcon fontSize="small">
-        <UserIcon />
-      </SvgIcon>
-    ),
-  },
-  {
-    title: "Tài khoản cá nhân",
     path: ROUTERS.USER.MY_ACCOUNT,
     icon: (
       <SvgIcon fontSize="small">

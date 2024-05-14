@@ -6,16 +6,6 @@ export const ROUTERS = {
     FORGOT_PASSWORD: "/auth/forgot-password",
     RESET_PASSWORD: "/auth/reset-password",
   },
-  ADMIN: {
-    ROOT: "/admin",
-    DASHBOARD: "/admin/dashboard",
-    CREATE_NOTIFICATION: "/admin/create-notification",
-    CREATE_ACCOUNT: "/admin/create-account",
-    EMPLOYEES_LIST: "/admin/employees-list",
-
-    ORIGINAL_EDIT_ACCOUNT: "/admin/edit-account",
-    EDIT_ACCOUNT: `/admin/edit-account/:id`,
-  },
   USER: {
     ROOT: "/user",
     DASHBOARD: "/user/dashboard",
@@ -27,4 +17,15 @@ export const ROUTERS = {
     ORIGINAL_SEE_PROFILE: "/user/see-profile",
     SEE_PROFILE: `/user/see-profile/:id`,
   },
+  ADMIN: {
+    ROOT: "/admin",
+    DASHBOARD: "/admin/dashboard",
+    CREATE_NOTIFICATION: "/admin/create-notification",
+    CREATE_ACCOUNT: "/admin/create-account",
+    EMPLOYEES_LIST: "/admin/employees-list",
+
+    ORIGINAL_EDIT_ACCOUNT: "/admin/edit-account",
+    EDIT_ACCOUNT: `/admin/edit-account/:id`,
+  },
 };
+

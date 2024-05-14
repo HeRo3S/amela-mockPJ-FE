@@ -1,0 +1,17 @@
+.dashboardWrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.calendarStack {
+  flex-grow: 1;
+  margin-top: 1.5rem;
+}
+
+.actionBtnsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.66rem;
+}

@@ -50,8 +50,9 @@ function Login() {
           })
         ).unwrap();
         setIsLoading(false);
-        if (originalResult.user.role === "admin") navigate("/admin/dashboard");
-        else navigate("/user/dashboard");
+        if (originalResult.user.role === "admin")
+          navigate(ROUTERS.ADMIN.DASHBOARD);
+        else navigate(ROUTERS.USER.DASHBOARD);
       } catch (err) {
         setIsLoading(false);
       }
