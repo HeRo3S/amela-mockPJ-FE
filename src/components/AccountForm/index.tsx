@@ -14,7 +14,12 @@ import styles from "./style.module.scss";
 import { DatePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, SetStateAction } from "react";
 import { IAccCreateFormData } from "interfaces";
-
+import dayjs from "dayjs";
+import {
+  DIV_SELECT_ITEMS,
+  GENDER_SELECT_ITEMS,
+  ROLE_SELECT_ITEMS,
+} from "constants/forms";
 interface IProps {
   file: File | null;
   setFile: React.Dispatch<SetStateAction<File | null>>;
@@ -127,14 +132,14 @@ export default function AccountForm(props: IProps) {
                   fullWidth
                   label="Số điện thoại"
                   name="phoneNumber"
-                  type="number"
+                  type="tel"
                   onChange={handleFormChange}
                   value={info.phoneNumber}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DatePicker
-                  format="dd/MM/yyyy"
+                  format="DD/MM/YYYY"
                   label="Ngày sinh"
                   renderInput={(params) => <TextField required {...params} />}
                   //   onChange={() => {
@@ -143,7 +148,7 @@ export default function AccountForm(props: IProps) {
                   //       dateOfBirth: new Date(event.target.value),
                   //     }));
                   //   }}
-                  //   value={info.dateOfBirth}
+                  value={dayjs(info?.dateOfBirth || undefined)}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -156,9 +161,11 @@ export default function AccountForm(props: IProps) {
                   onChange={handleFormChange}
                   value={info.gender}
                 >
-                  <MenuItem value="male">Nam</MenuItem>
-                  <MenuItem value="female">Nữ</MenuItem>
-                  <MenuItem value="other">Khác</MenuItem>
+                  {GENDER_SELECT_ITEMS.map((e) => (
+                    <MenuItem key={e.value} value={e.value}>
+                      {e.displayname}
+                    </MenuItem>
+                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12} md={6}>
@@ -170,10 +177,13 @@ export default function AccountForm(props: IProps) {
                   label="Vai trò"
                   name="role"
                   onChange={handleFormChange}
-                  value={info.role}
+                  value={info.role === "admin" ? "admin" : "user"}
                 >
-                  <MenuItem value="user">Người dùng</MenuItem>
-                  <MenuItem value="admin">Quản lý</MenuItem>
+                  {ROLE_SELECT_ITEMS.map((e) => (
+                    <MenuItem key={e.value} value={e.value}>
+                      {e.displayname}
+                    </MenuItem>
+                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12} md={6}>
@@ -187,13 +197,11 @@ export default function AccountForm(props: IProps) {
                   onChange={handleFormChange}
                   value={info.division}
                 >
-                  <MenuItem value="user">HR</MenuItem>
-                  <MenuItem value="user">ALC</MenuItem>
-                  <MenuItem value="user">Sales</MenuItem>
-                  <MenuItem value="user">Phoenix</MenuItem>
-                  <MenuItem value="pt">Hades</MenuItem>
-                  <MenuItem value="admin">Warrior</MenuItem>
-                  <MenuItem value="admin">Faderless</MenuItem>
+                  {DIV_SELECT_ITEMS.map((e) => (
+                    <MenuItem key={e.value} value={e.value}>
+                      {e.displayname}
+                    </MenuItem>
+                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12} md={6}>

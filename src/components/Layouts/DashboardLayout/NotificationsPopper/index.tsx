@@ -18,6 +18,7 @@ export default function NotificationPopper(props: IProps) {
   const navigate = useNavigate();
   const onClickNotifyItem = (id: number) => {
     navigate(`${ROUTERS.USER.ORIGINAL_NOTIFICATION}/${id}`);
+    onClose();
   };
   return (
     <Popper
