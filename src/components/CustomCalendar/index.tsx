@@ -3,11 +3,11 @@ import dayjs from "dayjs";
 import { useCallback, useMemo } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import classNames from "classnames";
-import CheckInData from "./checkinData";
 import CustomEventWrapper from "./CustomEventWrapper";
 import { Stack, Typography } from "@mui/material";
 import styles from "./style.module.scss";
 import "./style.module.scss";
+import CheckInData from "mocks/objects/checkinData";
 
 const localizer = dayjsLocalizer(dayjs);
 

@@ -7,7 +7,7 @@ import { clearAlert } from "redux/features/alertSlice";
 const StyledAlertContainer = styled(Box)({
   position: "fixed",
   top: "50px",
-  left: "50px",
+  right: "50px",
   zIndex: 100000000,
 });
 

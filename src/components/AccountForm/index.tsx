@@ -177,7 +177,7 @@ export default function AccountForm(props: IProps) {
                   label="Vai trò"
                   name="role"
                   onChange={handleFormChange}
-                  value={info.role === "admin" ? "admin" : "user"}
+                  value={info.role}
                 >
                   {ROLE_SELECT_ITEMS.map((e) => (
                     <MenuItem key={e.value} value={e.value}>

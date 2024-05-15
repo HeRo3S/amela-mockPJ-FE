@@ -6,6 +6,7 @@ import DashboardLayout from "components/Layouts/DashboardLayout";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
 import NoAccess from "components/NoAccess";
 import { ROUTERS } from "constants/routers";
+import { ROLE_VALUE } from "constants/common";
 
 export default function AdminWrapper() {
   const outlet = useOutlet();
@@ -28,7 +29,8 @@ export default function AdminWrapper() {
 
   // dummier version of check authenticate
   const { userInfo } = useAppSelector((state) => state.auth);
-  if (userInfo?.role !== "admin") return <NoAccess />;
+  if (userInfo?.role !== ROLE_VALUE.ADMIN) return <NoAccess />;
 
   return <React.Fragment>{outlet}</React.Fragment>;
 }
+
