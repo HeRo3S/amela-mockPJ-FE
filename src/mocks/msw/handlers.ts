@@ -19,16 +19,36 @@ export const handlers = [
     if (!account?.email)
       return HttpResponse.json(
         { message: "wrong credentials!" },
-        { status: 401 }
+        { status: 401 },
       );
 
     const existedAcc = MockAccounts.find((e) => e.email === account.email);
     if (existedAcc?.password !== account.password) {
       return HttpResponse.json(
         { message: "wrong credentials!" },
-        { status: 401 }
+        { status: 401 },
       );
     }
+    const { password, ...userInfo } = existedAcc;
+    return HttpResponse.json({ user: userInfo });
+  }),
+
+  http.post(configs.API_DOMAIN + API.RESET_PASSWORD, async ({ request }) => {
+    const account = (await request.json()) as {
+      _id: string;
+      newPassword: string;
+    };
+
+    const existedAcc = MockAccounts.find((e) => e._id === account._id);
+
+    if (!existedAcc?.password) {
+      return HttpResponse.json(
+        { message: "wrong credentials!" },
+        { status: 401 },
+      );
+    }
+
+    existedAcc.password = account.newPassword;
     const { password, ...userInfo } = existedAcc;
     return HttpResponse.json({ user: userInfo });
   }),
@@ -42,12 +62,12 @@ export const handlers = [
     const searchKey = url.searchParams.get("searchKey");
 
     const data = MockEmployessListData.filter((e) =>
-      `${e.lastName} ${e.firstName}`.includes(searchKey || "")
+      `${e.lastName} ${e.firstName}`.includes(searchKey || ""),
     );
     if (!page || !size)
       return HttpResponse.json(
         { message: "cannot find page and size" },
-        { status: 400 }
+        { status: 400 },
       );
     return HttpResponse.json({
       pageData: applyPagination(data, +page, +size),
