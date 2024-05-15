@@ -51,9 +51,7 @@ function TopNav(props: IProps) {
               className={styles.styledAvt}
               onClick={accountPopover.handleOpen}
               ref={accountPopover.anchorRef}
-              src={`${import.meta.env.VITE_APP_BE_SERVER_URL}/img/users/${
-                userInfo?.photo
-              }`}
+              src={userInfo?.avtString}
             />
           </Stack>
         </div>

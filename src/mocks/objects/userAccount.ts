@@ -17,7 +17,7 @@ const MockAccounts: IDBMockUser[] = [
     role: ROLE_VALUE.DEV,
     division: "Hades",
     bio: "",
-    avtString: "",
+    avtString: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgpsHN6NtT2WwmafrR-D45BT4RO4YiWyNM5eHARAHyEw&s",
     password: "1234",
   },
   {
@@ -31,7 +31,7 @@ const MockAccounts: IDBMockUser[] = [
     role: ROLE_VALUE.ADMIN,
     division: "HR",
     bio: "",
-    avtString: "",
+    avtString: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShFfPZCyd1zEZrRtFqWUkGitYUMmlF8S-_vkCf1gy-eA&s",
     password: "1234",
   },
 ];
