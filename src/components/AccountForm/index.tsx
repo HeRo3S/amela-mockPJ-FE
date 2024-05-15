@@ -58,7 +58,9 @@ export default function AccountForm(props: IProps) {
             <div className={styles.avtCardWrapper}>
               <Avatar
                 className={styles.avt}
-                src={file ? URL.createObjectURL(file) : undefined}
+                src={
+                  file ? URL.createObjectURL(file) : info.avtString || undefined
+                }
               ></Avatar>
               <Typography gutterBottom variant="h5">
                 {formatDisplayName(info.firstName, info.lastName)}
@@ -165,23 +167,41 @@ export default function AccountForm(props: IProps) {
                   <MenuItem value="other">Khác</MenuItem>
                 </TextField>
               </Grid>
-              {adminMode && (
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    select
-                    label="Vai trò"
-                    name="role"
-                    onChange={handleFormChange}
-                    value={info.role}
-                  >
-                    <MenuItem value="user">Người dùng</MenuItem>
-                    <MenuItem value="pt">PT</MenuItem>
-                    <MenuItem value="admin">Quản lý</MenuItem>
-                  </TextField>
-                </Grid>
-              )}
+              <Grid item xs={12} md={6}>
+                <TextField
+                  fullWidth
+                  required
+                  select
+                  disabled={!adminMode}
+                  label="Vai trò"
+                  name="role"
+                  onChange={handleFormChange}
+                  value={info.role}
+                >
+                  <MenuItem value="user">Người dùng</MenuItem>
+                  <MenuItem value="admin">Quản lý</MenuItem>
+                </TextField>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  fullWidth
+                  required
+                  select
+                  disabled={!adminMode}
+                  label="Bộ phận"
+                  name="division"
+                  onChange={handleFormChange}
+                  value={info.division}
+                >
+                  <MenuItem value="user">HR</MenuItem>
+                  <MenuItem value="user">ALC</MenuItem>
+                  <MenuItem value="user">Sales</MenuItem>
+                  <MenuItem value="user">Phoenix</MenuItem>
+                  <MenuItem value="pt">Hades</MenuItem>
+                  <MenuItem value="admin">Warrior</MenuItem>
+                  <MenuItem value="admin">Faderless</MenuItem>
+                </TextField>
+              </Grid>
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth

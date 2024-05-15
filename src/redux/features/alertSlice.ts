@@ -1,6 +1,11 @@
+import { AlertColor } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface IState {
+  severity: AlertColor;
+  message: string;
+}
+const initialState: IState = {
   severity: "info",
   message: "",
 };

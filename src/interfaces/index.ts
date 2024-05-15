@@ -21,11 +21,16 @@ export interface IAccCreateFormData {
   dateOfBirth: string;
   gender: string;
   role: string;
+  division: string;
   bio: string;
   password: string;
   passwordConfirm: string;
 }
-
+export interface IGetAccInfo extends IAccCreateFormData {
+  [key: string]: unknown;
+  _id: string;
+  avtString: string;
+}
 export interface IScheduleNotification {
   [key: string]: unknown;
   id: number;

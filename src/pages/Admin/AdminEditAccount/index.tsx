@@ -1,21 +1,32 @@
-import { useState } from "react";
-import styles from "../../Admin/AdminCreateAccount/style.module.scss";
-import { IAccCreateFormData } from "interfaces";
 import { Typography } from "@mui/material";
 import AccountForm from "components/AccountForm";
-import { useAppSelector } from "utils/hooks/reduxToolkit";
+import styles from "./style.module.scss";
+import React, { useEffect, useState } from "react";
+import { IAccCreateFormData } from "interfaces";
 import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
 import { useDialog } from "utils/hooks/useDialog";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import API from "constants/api";
+import { GetEmployeeInfoByID } from "api/employeesList";
+import Loading from "components/Loading";
 import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 
-export default function MyAccount() {
+export default function AdminEditAccount() {
+  const { id } = useParams();
+
+  const { isLoading, data } = useQuery([API.GET_EMPLOYEES_ID, id], () =>
+    GetEmployeeInfoByID(id as string)
+  );
+
   const [file, setFile] = useState<File | null>(null);
-  const userInfo = useAppSelector((state) => state.auth.userInfo);
   const [accData, setAccData] = useState<IAccCreateFormData>({
-    ...userInfo,
-    password: "",
-    passwordConfirm: "",
+    ...data,
   });
+
+  useEffect(() => {
+    if (data) setAccData((prev) => (prev = { ...data }));
+  }, [data]);
 
   const {
     open: dialogOpen,
@@ -28,24 +39,27 @@ export default function MyAccount() {
     handleDialogOpen();
   }
 
+  if (isLoading) return <Loading />;
+
   return (
     <div className={styles.contentWrapper}>
       <ConfirmationDialog
-        title="Thay đổi thông tin cá nhân"
-        successMessage="Thay đổi thông tin cá nhân thành công"
-        errorMessage="Thay đổi thông tin cá nhân thất bại!"
+        title="Chỉnh sửa tài khoản"
+        successMessage="Chỉnh sửa tài khoản thành công!"
+        errorMessage="Chỉnh sửa tài khoản thất bại!"
         open={dialogOpen}
         onClose={handleDialogClose}
         success
       />
-      <PageTitle text="Tài khoản cá nhân" />
+      <PageTitle text="Chỉnh sửa tài khoản" />
       <AccountForm
         file={file}
         setFile={setFile}
         info={accData}
         setInfo={setAccData}
+        adminMode
         editingMode
-        onClickSubmitForm={onClickSubmitForm}
+        onClickSubmitForm={(e) => onClickSubmitForm(e)}
       />
     </div>
   );

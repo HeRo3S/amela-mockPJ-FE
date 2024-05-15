@@ -8,6 +8,7 @@ import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
 import { IScheduleNotification, ISetScheduleNotification } from "interfaces";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
 import { useDialog } from "utils/hooks/useDialog";
+import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 
 const INITIAL_STATE_EDITING_ITEM: IScheduleNotification = {
   id: -1,
@@ -86,9 +87,7 @@ export default function AdminCreateNoti() {
           createMode ? "Tạo thông báo mới thất bại" : "Sửa thông báo thất bại"
         }
       />
-      <Typography variant="h3" gutterBottom className={styles.title}>
-        Đặt lịch thông báo
-      </Typography>
+      <PageTitle text="Đặt lịch thông báo" />
       <Grid container spacing={3}>
         <Grid item xs={12} md={5}>
           <Notifications

@@ -12,10 +12,19 @@ export const ROUTERS = {
     CREATE_NOTIFICATION: "/admin/create-notification",
     CREATE_ACCOUNT: "/admin/create-account",
     EMPLOYEES_LIST: "/admin/employees-list",
+
+    ORIGINAL_EDIT_ACCOUNT: "/admin/edit-account",
+    EDIT_ACCOUNT: `/admin/edit-account/:id`,
   },
   USER: {
+    ROOT: "/user",
     DASHBOARD: "/user/dashboard",
     MY_ACCOUNT: "/user/my-account",
-    NOTIFICATION: "/notification/:id"
+
+    ORIGINAL_NOTIFICATION: "/user/notification",
+    NOTIFICATION: "/user/notification/:id",
+
+    ORIGINAL_SEE_PROFILE: "/user/see-profile",
+    SEE_PROFILE: `/user/see-profile/:id`,
   },
 };

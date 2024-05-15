@@ -7,8 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import styles from "./style.module.scss";
-import { useNavigate } from "react-router-dom";
-import { logout } from "../../../../redux/features/authSlice";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
 
 interface IProps {
