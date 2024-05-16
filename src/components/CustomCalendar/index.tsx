@@ -1,5 +1,6 @@
 import { Calendar, View, Views, dayjsLocalizer } from "react-big-calendar";
 import dayjs from "dayjs";
+import "dayjs/locale/vi";
 import { useCallback, useMemo, useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import classNames from "classnames";
@@ -13,7 +14,14 @@ import { GetCheckinData } from "api/checkin";
 import Loading from "components/Loading";
 import { ICheckInData } from "interfaces";
 
+dayjs.locale("vi");
 const localizer = dayjsLocalizer(dayjs);
+
+const messages = {
+  previous: "Trước",
+  next: "Sau",
+  today: "Hôm nay",
+};
 
 export function CustomCalendar() {
   const [selectedDay, setSelectedDay] = useState(dayjs());
@@ -74,8 +82,6 @@ export function CustomCalendar() {
     [CheckInData]
   );
 
-  if (!CheckInData) return <Loading />;
-
   return (
     <Stack flexGrow={1}>
       <div className={styles.colorExplain}>
@@ -93,16 +99,22 @@ export function CustomCalendar() {
         </div>
       </div>
       <div className={styles.calendarWrapper}>
-        <Calendar
-          localizer={localizer}
-          components={components}
-          date={date.toDate()}
-          onNavigate={handleNavigate}
-          dayPropGetter={(date) => dayPropGetter(date, CheckInData)}
-          max={max}
-          views={views}
-          events={events}
-        ></Calendar>
+        {!CheckInData ? (
+          <Loading />
+        ) : (
+          <Calendar
+            localizer={localizer}
+            culture={"vi-VN"}
+            messages={messages}
+            components={components}
+            date={date.toDate()}
+            onNavigate={handleNavigate}
+            dayPropGetter={(date) => dayPropGetter(date, CheckInData)}
+            max={max}
+            views={views}
+            events={events}
+          />
+        )}
       </div>
     </Stack>
   );
