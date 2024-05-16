@@ -15,6 +15,14 @@ const initialState = {
     // dateOfBirth: "2001/25/09",
     // gender: "male",
     // bio: "",
+    lastName: "",
+    firstName: "",
+    role: "",
+    email: "",
+    phoneNumber: "",
+    dateOfBirth: "",
+    gender: "",
+    bio: "",
   },
   token: "",
   isLoggedIn: false,
@@ -94,6 +102,11 @@ const authSlice = createSlice({
       const { data } = action.payload;
       state.userInfo = data;
     },
+    logout: (state) => {
+      state.userInfo = { ...initialState.userInfo };
+      state.token = initialState.token;
+      state.isLoggedIn = initialState.isLoggedIn;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -103,7 +116,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(login.rejected, (state) => {
-        state.userInfo = {};
+        state.userInfo = { ...initialState.userInfo };
         state.token = "";
         state.isLoggedIn = false;
       });
@@ -127,4 +140,4 @@ const authSlice = createSlice({
 
 export default authSlice.reducer;
 
-export const { changeUserInfo } = authSlice.actions;
+export const { changeUserInfo, logout } = authSlice.actions;

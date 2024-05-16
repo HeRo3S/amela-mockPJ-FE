@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 
-export default function AdminEmployeesList() {
+export default function Colleagues() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(7);
@@ -52,7 +52,6 @@ export default function AdminEmployeesList() {
         <Loading />
       ) : (
         <UsersTable
-          adminMode
           data={data.pageData}
           count={data.length}
           page={page}

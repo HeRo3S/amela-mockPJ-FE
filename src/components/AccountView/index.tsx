@@ -80,6 +80,7 @@ export default function AccountView(props: IProps) {
                 <TextField
                   fullWidth
                   label="Số điện thoại"
+                  type="tel"
                   name="phoneNumber"
                   value={info.phoneNumber}
                 />

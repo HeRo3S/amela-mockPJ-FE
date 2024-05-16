@@ -7,7 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import styles from "./style.module.scss";
-import { useAppSelector } from "utils/hooks/reduxToolkit";
+import { useAppDispatch, useAppSelector } from "utils/hooks/reduxToolkit";
+import { logout } from "redux/features/authSlice";
 
 interface IProps {
   anchorEl: any;
@@ -19,13 +20,11 @@ function AccountPopover(props: IProps) {
   const { anchorEl, onClose, open } = props;
   // DANGER: DO NOT MOVE
   // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.auth.userInfo);
 
   const handleSignOut = async () => {
-    //DANGER: DO NOT DELETE
-    // await dispatch(logout());
-    // navigate("/login");
+    dispatch(logout());
   };
 
   return (
