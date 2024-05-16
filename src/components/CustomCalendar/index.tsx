@@ -1,49 +1,70 @@
-import { Calendar, Views, dayjsLocalizer } from "react-big-calendar";
+import { Calendar, View, Views, dayjsLocalizer } from "react-big-calendar";
 import dayjs from "dayjs";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import classNames from "classnames";
 import CustomEventWrapper from "./CustomEventWrapper";
 import { Stack, Typography } from "@mui/material";
 import styles from "./style.module.scss";
 import "./style.module.scss";
-import CheckInData from "mocks/objects/checkinData";
+import API from "constants/api";
+import { useQuery } from "react-query";
+import { GetCheckinData } from "api/checkin";
+import Loading from "components/Loading";
+import { ICheckInData } from "interfaces";
 
 const localizer = dayjsLocalizer(dayjs);
 
 export function CustomCalendar() {
-  const dayPropGetter = useCallback((date: Date) => {
-    const dateKey = dayjs(date).format("YYYY/MM/DD");
-    const index = CheckInData.findIndex((e) => e.date === dateKey);
-    if (index === -1) return {};
+  const [selectedDay, setSelectedDay] = useState(dayjs());
 
-    let className;
-    switch (CheckInData[index].status) {
-      case "FULL":
-        className = styles.ccBgDayfull;
-        break;
-      case "HALF":
-        className = styles.ccBgDayhalf;
-        break;
-      case "ABSENT":
-        className = styles.ccBgDayoff;
-        break;
-      default:
-        break;
-    }
-    return { className: className };
-  }, []);
+  const { data: CheckInData, isLoading } = useQuery({
+    queryKey: [API.GET_CHECKIN_DATA, selectedDay.month(), selectedDay.year()],
+    queryFn: () => GetCheckinData(selectedDay.month(), selectedDay.year()),
+  });
 
-  const { components, defaultDate, max, views, events } = useMemo(
+  const dayPropGetter = useCallback(
+    (date: Date, CheckInData: ICheckInData[]) => {
+      const dateKey = dayjs(date).format("YYYY/MM/DD");
+      const index = CheckInData.findIndex((e) => e.date === dateKey);
+      if (index === -1) return {};
+
+      let className;
+      switch (CheckInData[index].status) {
+        case "FULL":
+          className = styles.ccBgDayfull;
+          break;
+        case "HALF":
+          className = styles.ccBgDayhalf;
+          break;
+        case "ABSENT":
+          className = styles.ccBgDayoff;
+          break;
+        default:
+          break;
+      }
+      return { className: className };
+    },
+    []
+  );
+
+  const handleNavigate = useCallback(
+    (newDate: Date) => {
+      setSelectedDay(dayjs(newDate));
+    },
+    [setSelectedDay]
+  );
+
+  const { components, date, max, views, events } = useMemo(
     () => ({
       components: {
         event: CustomEventWrapper,
       },
-      defaultDate: new Date(),
+      date: selectedDay,
       max: dayjs().endOf("day").subtract(1, "hours").toDate(),
       views: { month: true },
       // convert events to the correct data type
-      events: CheckInData.map((e) => ({
+      events: CheckInData?.map((e) => ({
         start: e.startTime ? new Date(e.startTime) : new Date(e.date),
         end: e.endTime ? new Date(e.endTime) : new Date(e.date),
         allDay: true,
@@ -52,6 +73,8 @@ export function CustomCalendar() {
     }),
     [CheckInData]
   );
+
+  if (!CheckInData) return <Loading />;
 
   return (
     <Stack flexGrow={1}>
@@ -73,8 +96,9 @@ export function CustomCalendar() {
         <Calendar
           localizer={localizer}
           components={components}
-          defaultDate={defaultDate}
-          dayPropGetter={dayPropGetter}
+          date={date.toDate()}
+          onNavigate={handleNavigate}
+          dayPropGetter={(date) => dayPropGetter(date, CheckInData)}
           max={max}
           views={views}
           events={events}

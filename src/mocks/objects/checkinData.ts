@@ -2,21 +2,23 @@ import { ICheckInData } from "interfaces";
 import dayjs from "dayjs";
 import { fakerVI } from "@faker-js/faker";
 
+const EIGHT_OCLOCK = dayjs().set("hour", 8).set("minute", 0);
+const SEVENTEEN_THIRTY = dayjs().set("hour", 17).set("minute", 30);
+
 function checkStatus(startTime: string, endTime: string) {
-  const eightOclock = dayjs("8:00", "HH:mm");
-  const seventeenThirty = dayjs("17:30", "HH:mm");
-  if (
-    (dayjs(startTime).hour() >= eightOclock.hour() &&
-      dayjs(startTime).minute() > eightOclock.minute()) ||
-    dayjs(endTime).hour() < seventeenThirty.hour() ||
-    (dayjs(endTime).hour() === seventeenThirty.hour() &&
-      dayjs(endTime).minute() < seventeenThirty.minute())
-  )
-    return "HALF";
-  return "FULL";
+  const checkInLate =
+    dayjs(startTime).hour() >= EIGHT_OCLOCK.hour() &&
+    dayjs(startTime).minute() >= EIGHT_OCLOCK.minute();
+
+  const checkOutEarly =
+    dayjs(endTime).hour() < SEVENTEEN_THIRTY.hour() ||
+    (dayjs(endTime).hour() === SEVENTEEN_THIRTY.hour() &&
+      dayjs(endTime).minute() < SEVENTEEN_THIRTY.minute());
+
+  return checkInLate || checkOutEarly ? "HALF" : "FULL";
 }
 
-function randomizeCheckInData(elaspedDay: number) {
+function randomizeCheckInData(elaspedDay: number): ICheckInData | null {
   const date = dayjs().subtract(elaspedDay, "day").format("YYYY/MM/DD");
   if (dayjs(date).day() === 0 || dayjs(date).day() === 6) return null;
 
@@ -25,14 +27,14 @@ function randomizeCheckInData(elaspedDay: number) {
       from: dayjs(date).set("hour", 7).set("minute", 35).format(),
       to: dayjs(date).set("hour", 8).set("minute", 35).format(),
     })
-    .toUTCString();
+    .toString();
 
   const endTime = fakerVI.date
     .between({
       from: dayjs(date).set("hour", 17).set("minute", 25).format(),
       to: dayjs(date).set("hour", 18).set("minute", 35).format(),
     })
-    .toUTCString();
+    .toString();
 
   const status = checkStatus(startTime, endTime);
 
@@ -65,8 +67,13 @@ const CheckInData: ICheckInData[] = [
   },
 ];
 
-for (let i = 100; i >= 3; i--) {
-  const newItem = randomizeCheckInData(i);
-  newItem && CheckInData.push(newItem);
+function CreateCheckInData(): ICheckInData[] {
+  for (let i = 100; i >= 3; i--) {
+    const newItem = randomizeCheckInData(i);
+    if (!newItem || CheckInData.find((e) => e.date === newItem.date)) continue;
+    CheckInData.push(newItem);
+  }
+  return CheckInData;
 }
-export default CheckInData;
+
+export default CreateCheckInData;

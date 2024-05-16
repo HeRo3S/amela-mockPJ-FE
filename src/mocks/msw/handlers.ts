@@ -4,6 +4,8 @@ import configs from "constants/config";
 import { applyPagination } from "utils/hooks/applyPagination";
 import API from "constants/api";
 import MockAccounts from "mocks/objects/userAccount";
+import CreateCheckInData from "mocks/objects/checkinData";
+import dayjs from "dayjs";
 
 export const handlers = [
   http.get("/api/user", () => {
@@ -19,14 +21,14 @@ export const handlers = [
     if (!account?.email)
       return HttpResponse.json(
         { message: "wrong credentials!" },
-        { status: 401 },
+        { status: 401 }
       );
 
     const existedAcc = MockAccounts.find((e) => e.email === account.email);
     if (existedAcc?.password !== account.password) {
       return HttpResponse.json(
         { message: "wrong credentials!" },
-        { status: 401 },
+        { status: 401 }
       );
     }
     const { password, ...userInfo } = existedAcc;
@@ -44,13 +46,25 @@ export const handlers = [
     if (!existedAcc?.password) {
       return HttpResponse.json(
         { message: "wrong credentials!" },
-        { status: 401 },
+        { status: 401 }
       );
     }
 
     existedAcc.password = account.newPassword;
     const { password, ...userInfo } = existedAcc;
     return HttpResponse.json({ user: userInfo });
+  }),
+
+  http.get(configs.API_DOMAIN + API.GET_CHECKIN_DATA, ({ request }) => {
+    const url = new URL(request.url);
+    const month = url.searchParams.get("month");
+    const year = url.searchParams.get("year");
+
+    const result = CreateCheckInData().filter((e) => {
+      if (!year || !month) return false;
+      return dayjs(e.date).year() === +year && dayjs(e.date).month() === +month;
+    });
+    return HttpResponse.json(result);
   }),
 
   // https://something.com/admin/employees-list?page={page}&size={size}
@@ -62,12 +76,12 @@ export const handlers = [
     const searchKey = url.searchParams.get("searchKey");
 
     const data = MockEmployessListData.filter((e) =>
-      `${e.lastName} ${e.firstName}`.includes(searchKey || ""),
+      `${e.lastName} ${e.firstName}`.includes(searchKey || "")
     );
     if (!page || !size)
       return HttpResponse.json(
         { message: "cannot find page and size" },
-        { status: 400 },
+        { status: 400 }
       );
     return HttpResponse.json({
       pageData: applyPagination(data, +page, +size),
