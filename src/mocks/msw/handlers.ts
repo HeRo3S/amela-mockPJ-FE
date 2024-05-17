@@ -4,6 +4,8 @@ import configs from "constants/config";
 import { applyPagination } from "utils/hooks/applyPagination";
 import API from "constants/api";
 import MockAccounts from "mocks/objects/userAccount";
+import CreateCheckInData from "mocks/objects/checkinData";
+import dayjs from "dayjs";
 
 export const handlers = [
   http.get("/api/user", () => {
@@ -31,6 +33,38 @@ export const handlers = [
     }
     const { password, ...userInfo } = existedAcc;
     return HttpResponse.json({ user: userInfo });
+  }),
+
+  http.post(configs.API_DOMAIN + API.RESET_PASSWORD, async ({ request }) => {
+    const account = (await request.json()) as {
+      _id: string;
+      newPassword: string;
+    };
+
+    const existedAcc = MockAccounts.find((e) => e._id === account._id);
+
+    if (!existedAcc?.password) {
+      return HttpResponse.json(
+        { message: "wrong credentials!" },
+        { status: 401 }
+      );
+    }
+
+    existedAcc.password = account.newPassword;
+    const { password, ...userInfo } = existedAcc;
+    return HttpResponse.json({ user: userInfo });
+  }),
+
+  http.get(configs.API_DOMAIN + API.GET_CHECKIN_DATA, ({ request }) => {
+    const url = new URL(request.url);
+    const month = url.searchParams.get("month");
+    const year = url.searchParams.get("year");
+
+    const result = CreateCheckInData().filter((e) => {
+      if (!year || !month) return false;
+      return dayjs(e.date).year() === +year && dayjs(e.date).month() === +month;
+    });
+    return HttpResponse.json(result);
   }),
 
   // https://something.com/admin/employees-list?page={page}&size={size}

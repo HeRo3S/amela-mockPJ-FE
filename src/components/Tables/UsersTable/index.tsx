@@ -44,25 +44,25 @@ export default function UsersTable(props: IProps) {
 
   const onPageChange = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
-    page: number
+    page: number,
   ) => {
     parentOnPageChange(page);
   };
   const onRowsPerPageChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
     parentOnRowsPerPageChange(+e.target.value);
   };
 
   const onClickViewInfoButton = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    data: IGetAccInfo
+    data: IGetAccInfo,
   ) => {
     parentOnClickViewInfoButton(data);
   };
   const onClickEditInfoButton = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    data: IGetAccInfo
+    data: IGetAccInfo,
   ) => {
     parentOnClickEditInfoButton(data);
   };
@@ -77,7 +77,7 @@ export default function UsersTable(props: IProps) {
             <TableCell>Bộ phận</TableCell>
             <TableCell>Chức vụ</TableCell>
             <TableCell className={styles.genderColumn}>Giới tinh</TableCell>
-            <TableCell></TableCell>
+            <TableCell className={styles.actionCell}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -117,7 +117,7 @@ export default function UsersTable(props: IProps) {
           onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={[7,10,15,20]}
+          rowsPerPageOptions={[7, 10, 15, 20]}
           onRowsPerPageChange={onRowsPerPageChange}
         />
       </Table>

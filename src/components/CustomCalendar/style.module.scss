@@ -4,6 +4,15 @@
 :global {
   .rbc-calendar {
     flex-grow: 1;
+    margin-top: 1rem;
+
+    & .rbc-toolbar {
+      & .rbc-btn-group {
+        @media screen and (max-width: 767px) {
+          padding-bottom: 0.33rem;
+        }
+      }
+    }
   }
 }
 .ccBgDayfull {

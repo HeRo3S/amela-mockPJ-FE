@@ -4,7 +4,8 @@ export const ROUTERS = {
     LOGIN: "/auth/login",
     SIGN_UP: "/auth/sign-up",
     FORGOT_PASSWORD: "/auth/forgot-password",
-    RESET_PASSWORD: "/auth/reset-password",
+    ORIGINAL_RESET_PASSWORD: "/auth/reset-password",
+    RESET_PASSWORD: `/auth/reset-password/:id`,
   },
   USER: {
     ROOT: "/user",

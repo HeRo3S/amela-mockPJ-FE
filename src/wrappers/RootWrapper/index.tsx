@@ -17,6 +17,7 @@ import AdminWrapper from "wrappers/AuthWrapper/AdminWrapper";
 import NotFound from "components/NotFound";
 import UserDashboard from "pages/User/Dashboard";
 import Colleagues from "pages/User/Colleagues";
+import ResetPassword from "pages/ResetPassword";
 
 const Login = lazy(() => import("pages/Login"));
 const SignUp = lazy(() => import("pages/SignUp"));
@@ -34,7 +35,8 @@ export default function AppWrapper() {
         <Route
           path={ROUTERS.AUTH.FORGOT_PASSWORD}
           element={<ForgotPassword />}
-        ></Route>
+        />
+        <Route path={ROUTERS.AUTH.RESET_PASSWORD} element={<ResetPassword />} />
 
         <Route path={ROUTERS.HOME} element={<AuthWrapper />}>
           <Route path={ROUTERS.USER.ROOT}>
@@ -76,3 +78,4 @@ export default function AppWrapper() {
     </div>
   );
 }
+

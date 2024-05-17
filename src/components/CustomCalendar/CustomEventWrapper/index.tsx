@@ -13,7 +13,7 @@ export default function CustomEventWrapper({
 }: EventProps<CustomEventData>) {
   const { data } = event;
   const downXL = useMediaQuery((theme: Theme) => theme.breakpoints.down("xl"));
-  const downSM = useMediaQuery("(max-width: 700px)");
+  const downSM = useMediaQuery("(max-width: 750px)");
 
   if (downSM) return <></>;
 

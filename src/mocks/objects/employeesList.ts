@@ -1,4 +1,5 @@
 import { fakerVI } from "@faker-js/faker";
+import { ROLE_VALUE } from "constants/common";
 
 export interface IMockUser {
   _id: string;
@@ -23,13 +24,7 @@ function createRandomEmployee(): IMockUser {
   const email = fakerVI.internet.email({ firstName, lastName });
   const phoneNumber = fakerVI.phone.number();
   const dateOfBirth = fakerVI.date.birthdate().toUTCString();
-  const role = fakerVI.helpers.arrayElement([
-    "Frontend Developer",
-    "Backend Developer",
-    "Technical leader",
-    "Tester",
-    "PM",
-  ]);
+  const role = fakerVI.helpers.arrayElement(Object.values(ROLE_VALUE));
   const bio = fakerVI.person.bio();
   const division = fakerVI.helpers.arrayElement([
     "HR",
@@ -41,7 +36,7 @@ function createRandomEmployee(): IMockUser {
   ]);
   const avtString = fakerVI.image.avatar();
 
-  const randomUser: IUser = {
+  const randomUser: IMockUser = {
     _id,
     gender,
     firstName,
