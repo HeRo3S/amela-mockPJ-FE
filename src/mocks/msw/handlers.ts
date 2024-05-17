@@ -85,7 +85,7 @@ export const handlers = [
       );
     return HttpResponse.json({
       pageData: applyPagination(data, +page, +size),
-      length: MockEmployessListData.length,
+      length: data.length,
     });
   }),
 

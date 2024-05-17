@@ -6,6 +6,7 @@ import API from "constants/api";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styles from "../../Admin/AdminCreateAccount/style.module.scss";
+import GoBackButton from "components/Button/GoBackButton";
 
 export default function ViewAccount() {
   const { id } = useParams();
@@ -18,6 +19,7 @@ export default function ViewAccount() {
   return (
     <div className={styles.contentWrapper}>
       <PageTitle text="Tài khoản đồng nghiệp" />
+      <GoBackButton />
       <AccountView info={data} />
     </div>
   );
