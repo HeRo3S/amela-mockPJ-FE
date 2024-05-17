@@ -55,6 +55,8 @@ export default function AccountView(props: IProps) {
                   fullWidth
                   label="Họ"
                   name="lastName"
+                  disabled
+                  className={styles.inputView}
                   value={info.lastName}
                 />
               </Grid>
@@ -64,6 +66,8 @@ export default function AccountView(props: IProps) {
                   required
                   label="Tên"
                   name="firstName"
+                  disabled
+                  className={styles.inputView}
                   value={info.firstName}
                 />
               </Grid>
@@ -73,6 +77,8 @@ export default function AccountView(props: IProps) {
                   required
                   label="Email"
                   name="email"
+                  disabled
+                  className={styles.inputView}
                   value={info.email}
                 />
               </Grid>
@@ -82,6 +88,8 @@ export default function AccountView(props: IProps) {
                   label="Số điện thoại"
                   type="tel"
                   name="phoneNumber"
+                  disabled
+                  className={styles.inputView}
                   value={info.phoneNumber}
                 />
               </Grid>
@@ -96,6 +104,9 @@ export default function AccountView(props: IProps) {
                   //       dateOfBirth: new Date(event.target.value),
                   //     }));
                   //   }}
+                  sx={{ width: "100%" }}
+                  disabled
+                  className={styles.inputView}
                   value={dayjs(info.dateOfBirth)}
                 />
               </Grid>
@@ -106,6 +117,8 @@ export default function AccountView(props: IProps) {
                   select
                   label="Giới tính"
                   name="gender"
+                  disabled
+                  className={styles.inputView}
                   value={info.gender}
                 >
                   <MenuItem value="male">Nam</MenuItem>
@@ -119,6 +132,8 @@ export default function AccountView(props: IProps) {
                   required
                   label="Vai trò"
                   name="role"
+                  disabled
+                  className={styles.inputView}
                   value={info.role}
                 />
               </Grid>
@@ -128,6 +143,8 @@ export default function AccountView(props: IProps) {
                   required
                   label="Bộ phận"
                   name="division"
+                  disabled
+                  className={styles.inputView}
                   value={info.division}
                 />
               </Grid>
@@ -136,6 +153,8 @@ export default function AccountView(props: IProps) {
                   fullWidth
                   label="Giới thiệu"
                   name="bio"
+                  disabled
+                  className={styles.inputView}
                   value={info.bio}
                 />
               </Grid>

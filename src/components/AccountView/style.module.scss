@@ -21,3 +21,14 @@
 .cardFormActions:global(.MuiCardActions-root) {
   justify-content: flex-end;
 }
+
+.inputView {
+  :global(.Mui-disabled) {
+    color: rgba(17, 25, 39, 1);
+    -webkit-text-fill-color: inherit !important;
+  }
+
+  label:global(.Mui-disabled) {
+    color: #6c737f;
+  }
+}
