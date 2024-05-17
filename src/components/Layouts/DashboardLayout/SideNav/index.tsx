@@ -16,9 +16,11 @@ import { Scrollbar } from "components/Scrollbar";
 import { userItems, adminItems, hrItems } from "./sideNavList";
 import styles from "./style.module.scss";
 import SideNavItem from "../SideNavItem";
-import ROLES from "constants/roles";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
 import Img from "assets/img";
+import { ROUTERS } from "constants/routers";
+import { ROLE_SELECT_ITEMS } from "constants/forms";
+import { ROLE_VALUE } from "constants/common";
 
 interface IProps {
   onClose: () => void;
@@ -32,20 +34,13 @@ function SideNav(props: IProps) {
 
   const itemForEachRole = () => {
     let listItems;
-    switch (userInfo?.role) {
-      case "user":
-        listItems = userItems;
-        break;
-      case "hr":
-        listItems = hrItems;
-        break;
-      case "admin":
-        listItems = adminItems;
-        break;
-      default:
-        console.error("Cannot find user role!");
-        return;
+    if (!userInfo?.role) {
+      console.error("Cannot find user role!");
+      return;
     }
+    if (userInfo?.role === ROLE_VALUE.ADMIN) listItems = adminItems;
+    else listItems = userItems;
+
     return listItems.map((item) => {
       const active = item.path ? pathname === item.path : false;
       return (
@@ -75,7 +70,10 @@ function SideNav(props: IProps) {
                 {userInfo?.lastName} {userInfo?.firstName}
               </Typography>
               <Typography color="neutral.400" variant="body2">
-                {ROLES[userInfo?.role]}
+                {
+                  ROLE_SELECT_ITEMS.find((e) => e.value === userInfo?.role)
+                    ?.displayname
+                }
               </Typography>
             </div>
             <SvgIcon fontSize="small" sx={{ color: "neutral.500" }}>
@@ -116,9 +114,9 @@ function SideNav(props: IProps) {
               </SvgIcon>
             }
             fullWidth
-            to="/"
+            to={ROUTERS.HOME}
             sx={{ mt: 2 }}
-            target="_blank"
+            // target="_blank"
             variant="contained"
           >
             Quay lại trang chủ

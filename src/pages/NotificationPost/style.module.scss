@@ -1,0 +1,35 @@
+@use "src/assets/breakpoints" as bp;
+
+.contentWrapper {
+  width: 80%;
+  min-height: 90%;
+  align-self: center;
+  @media screen and (max-width: bp.$LG) {
+    width: 100%;
+  }
+  & .title {
+    padding-bottom: 1rem;
+    @media screen and (max-width: bp.$LG) {
+      padding-left: 1rem;
+    }
+  }
+}
+
+.card {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0.66rem 1rem;
+  min-height: 100%;
+
+  .cardActions {
+    align-self: flex-end;
+    margin-top: auto;
+    display: flex;
+
+    .cardBtns {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

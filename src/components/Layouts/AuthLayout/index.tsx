@@ -2,6 +2,7 @@ import { Box, Typography, Unstable_Grid2 as Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Img from "assets/img";
+import configs from "constants/config";
 
 interface IProps {
   children: React.ReactNode;
@@ -32,6 +33,16 @@ function Layout(props: IProps) {
           </Typography>
           {
             // <img alt="" src={Img.logo} />
+            configs.APP_ENV === "development" && (
+              <>
+                <Typography className={styles.sloganText} variant="subtitle1">
+                  (Acc: hunglt@amela.vn Pass:1234
+                </Typography>
+                <Typography className={styles.sloganText} variant="subtitle1">
+                  Admin acc: admin@amela.vn Pass:1234)
+                </Typography>
+              </>
+            )
           }
         </Box>
       </Grid>

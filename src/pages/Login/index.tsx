@@ -17,14 +17,14 @@ import {
 import Layout from "components/Layouts/AuthLayout";
 import styles from "./style.module.scss";
 import { login } from "redux/features/authSlice";
-import { useDispatch } from "react-redux";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { ROUTERS } from "constants/routers";
+import { useAppDispatch } from "utils/hooks/reduxToolkit";
 
 function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [method, setMethod] = useState("email");
-  // const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -41,19 +41,21 @@ function Login() {
       password: Yup.string().max(50).required("Vui lòng nhập mật khẩu"),
     }),
     onSubmit: async (values) => {
-      // try {
-      //   setIsLoading(true);
-      //   await dispatch(
-      //     login({
-      //       email: values.email,
-      //       password: values.password,
-      //     })
-      //   ).unwrap();
-      //   setIsLoading(false);
-      //   navigate("/dashboard");
-      // } catch (err) {
-      //   setIsLoading(false);
-      // }
+      try {
+        setIsLoading(true);
+        const originalResult = await dispatch(
+          login({
+            email: values.email,
+            password: values.password,
+          })
+        ).unwrap();
+        setIsLoading(false);
+        if (originalResult.user.role === "admin")
+          navigate(ROUTERS.ADMIN.DASHBOARD);
+        else navigate(ROUTERS.USER.DASHBOARD);
+      } catch (err) {
+        setIsLoading(false);
+      }
     },
   });
 

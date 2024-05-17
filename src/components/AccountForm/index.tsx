@@ -14,7 +14,12 @@ import styles from "./style.module.scss";
 import { DatePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, SetStateAction } from "react";
 import { IAccCreateFormData } from "interfaces";
-
+import dayjs from "dayjs";
+import {
+  DIV_SELECT_ITEMS,
+  GENDER_SELECT_ITEMS,
+  ROLE_SELECT_ITEMS,
+} from "constants/forms";
 interface IProps {
   file: File | null;
   setFile: React.Dispatch<SetStateAction<File | null>>;
@@ -58,7 +63,9 @@ export default function AccountForm(props: IProps) {
             <div className={styles.avtCardWrapper}>
               <Avatar
                 className={styles.avt}
-                src={file ? URL.createObjectURL(file) : undefined}
+                src={
+                  file ? URL.createObjectURL(file) : info.avtString || undefined
+                }
               ></Avatar>
               <Typography gutterBottom variant="h5">
                 {formatDisplayName(info.firstName, info.lastName)}
@@ -131,14 +138,14 @@ export default function AccountForm(props: IProps) {
                   fullWidth
                   label="Số điện thoại"
                   name="phoneNumber"
-                  type="number"
+                  type="tel"
                   onChange={handleFormChange}
                   value={info.phoneNumber}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DatePicker
-                  format="dd/MM/yyyy"
+                  format="DD/MM/YYYY"
                   label="Ngày sinh"
                   renderInput={(params) => <TextField required {...params} />}
                   //   onChange={() => {
@@ -147,7 +154,7 @@ export default function AccountForm(props: IProps) {
                   //       dateOfBirth: new Date(event.target.value),
                   //     }));
                   //   }}
-                  //   value={info.dateOfBirth}
+                  value={dayjs(info?.dateOfBirth || undefined)}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -160,28 +167,49 @@ export default function AccountForm(props: IProps) {
                   onChange={handleFormChange}
                   value={info.gender}
                 >
-                  <MenuItem value="male">Nam</MenuItem>
-                  <MenuItem value="female">Nữ</MenuItem>
-                  <MenuItem value="other">Khác</MenuItem>
+                  {GENDER_SELECT_ITEMS.map((e) => (
+                    <MenuItem key={e.value} value={e.value}>
+                      {e.displayname}
+                    </MenuItem>
+                  ))}
                 </TextField>
               </Grid>
-              {adminMode && (
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    select
-                    label="Vai trò"
-                    name="role"
-                    onChange={handleFormChange}
-                    value={info.role}
-                  >
-                    <MenuItem value="user">Người dùng</MenuItem>
-                    <MenuItem value="pt">PT</MenuItem>
-                    <MenuItem value="admin">Quản lý</MenuItem>
-                  </TextField>
-                </Grid>
-              )}
+              <Grid item xs={12} md={6}>
+                <TextField
+                  fullWidth
+                  required
+                  select
+                  disabled={!adminMode}
+                  label="Vai trò"
+                  name="role"
+                  onChange={handleFormChange}
+                  value={info.role}
+                >
+                  {ROLE_SELECT_ITEMS.map((e) => (
+                    <MenuItem key={e.value} value={e.value}>
+                      {e.displayname}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  fullWidth
+                  required
+                  select
+                  disabled={!adminMode}
+                  label="Bộ phận"
+                  name="division"
+                  onChange={handleFormChange}
+                  value={info.division}
+                >
+                  {DIV_SELECT_ITEMS.map((e) => (
+                    <MenuItem key={e.value} value={e.value}>
+                      {e.displayname}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth

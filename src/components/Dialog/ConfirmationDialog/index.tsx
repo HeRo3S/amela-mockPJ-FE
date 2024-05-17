@@ -21,7 +21,15 @@ interface IProps {
   errorMessage: string;
 }
 export default function ConfirmationDialog(props: IProps) {
-  const { open, onClose, loading, success } = props;
+  const {
+    open,
+    onClose,
+    loading,
+    success,
+    title,
+    successMessage,
+    errorMessage,
+  } = props;
   function renderContent() {
     if (loading) return <Loading />;
     if (success)
@@ -30,7 +38,7 @@ export default function ConfirmationDialog(props: IProps) {
           <SvgIcon color="success" fontSize="large">
             <CheckCircleIcon />
           </SvgIcon>
-          <DialogContentText>Chấm công thành công!</DialogContentText>
+          <DialogContentText>{successMessage}</DialogContentText>
         </>
       );
     else
@@ -39,14 +47,14 @@ export default function ConfirmationDialog(props: IProps) {
           <SvgIcon color="error" fontSize="large">
             <XCircleIcon />
           </SvgIcon>
-          <DialogContentText>Chấm công thất bại!</DialogContentText>
+          <DialogContentText>{errorMessage}</DialogContentText>
         </>
       );
   }
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>Thực hiện chấm công</DialogTitle>
+      <DialogTitle>{title}</DialogTitle>
       <DialogContent className={styles.dialogContent}>
         {renderContent()}
       </DialogContent>

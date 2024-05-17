@@ -6,6 +6,7 @@ import AccountForm from "components/AccountForm";
 import { useAppSelector } from "utils/hooks/reduxToolkit";
 import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
 import { useDialog } from "utils/hooks/useDialog";
+import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
 
 export default function MyAccount() {
   const [file, setFile] = useState<File | null>(null);
@@ -37,9 +38,7 @@ export default function MyAccount() {
         onClose={handleDialogClose}
         success
       />
-      <Typography variant="h3" gutterBottom className={styles.title}>
-        Tài khoản của tôi
-      </Typography>
+      <PageTitle text="Tài khoản cá nhân" />
       <AccountForm
         file={file}
         setFile={setFile}
