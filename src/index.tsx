@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import "antd/dist/reset.css";
 import "assets/index.global.scss";
 import "i18n/i18n";
 

@@ -1,0 +1,50 @@
+@use "node_modules/react-big-calendar/lib/sass/styles" as s;
+// @use "node_modules/react-big-calendar/lib/addons/dragAndDrop/styles"; // if using DnD
+
+:global {
+  .rbc-calendar {
+    flex-grow: 1;
+  }
+}
+.ccBgDayfull {
+  background-color: #bbfdb9;
+  border-left: solid 3px #2ecc71 !important;
+}
+
+.ccBgDayhalf {
+  background-color: #f9e2c0;
+  border-left: solid 3px #ffdba9 !important;
+}
+
+.ccBgDayoff {
+  background-color: #ffc6c6;
+  border-left: solid 3px #e74c3c !important;
+}
+
+.colorExplain {
+  display: flex;
+  flex-direction: row;
+  margin: 0.4rem 0;
+
+  & .colorExplainItem {
+    display: flex;
+    margin-right: 1rem;
+
+    & .dot {
+      display: inline-block;
+      align-self: center;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      border-left: 0 !important;
+      margin-right: 0.2rem;
+    }
+  }
+}
+
+.calendarWrapper {
+  min-height: 300px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
