@@ -43,6 +43,7 @@ export default function AccountForm(props: IProps) {
     onClickSubmitForm,
   } = props;
 
+
   const formik = useFormik({
     initialValues: info,
     validationSchema: Yup.object({
@@ -55,8 +56,16 @@ export default function AccountForm(props: IProps) {
     onSubmit: () => {},
   });
 
+  function formatDisplayName(firstName: string, lastName: string) {
+    let displayname = "";
+    lastName && (displayname += lastName + " ");
+    firstName && (displayname += firstName);
+    if (!displayname) displayname = "Tên người dùng";
+    return displayname;
+  }
+
   function handleChangeAvtInput(e: ChangeEvent<HTMLInputElement>) {
-    setFile(e.target.files ? e.target.files[0] : null);
+    setFile(e.target.files?.[0] || null);
   }
   function handleFormChange(e: ChangeEvent<HTMLInputElement>) {
     formik.handleChange(e);
@@ -76,9 +85,7 @@ export default function AccountForm(props: IProps) {
                 }
               ></Avatar>
               <Typography gutterBottom variant="h5">
-                {info.lastName + info.firstName
-                  ? `${info.lastName} ${info.firstName}`
-                  : "Tên người dùng"}
+                {formatDisplayName(info.firstName, info.lastName)}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {info.email || "Email"}
