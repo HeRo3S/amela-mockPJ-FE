@@ -10,16 +10,18 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
+import useDebounce from "utils/hooks/useDebounce";
 
 export default function AdminEmployeesList() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(7);
   const [searchKey, setSearchKey] = useState("");
+  const debouncedSearchKey = useDebounce(searchKey, 300);
 
   const { isLoading, data, error } = useQuery(
-    [API.GET_EMPLOYEES_LIST, page, rowsPerPage, searchKey],
-    () => GetEmployeesList(page, rowsPerPage, searchKey)
+    [API.GET_EMPLOYEES_LIST, page, rowsPerPage, debouncedSearchKey],
+    () => GetEmployeesList(page, rowsPerPage, debouncedSearchKey),
   );
 
   // *Note: Table component's function
