@@ -1,0 +1,11 @@
+@use "src/assets/breakpoints" as bp;
+
+.cardBtns {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+
+  @media screen and (max-width: bp.$LG) {
+    margin-left: 1rem;
+  }
+}

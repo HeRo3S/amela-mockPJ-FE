@@ -43,7 +43,6 @@ export default function AccountForm(props: IProps) {
     onClickSubmitForm,
   } = props;
 
-
   const formik = useFormik({
     initialValues: info,
     validationSchema: Yup.object({
@@ -52,6 +51,14 @@ export default function AccountForm(props: IProps) {
         .max(255)
         .required("Vui lòng nhập email"),
       firstName: Yup.string().max(50).required("Vui lòng nhập tên người dùng"),
+      lastName: Yup.string().max(50).required("Vui lòng nhập họ người dùng"),
+      password: Yup.string()
+        .min(8, "Mật khẩu dài ít nhất 8 ký tự")
+        .required("Vui lòng nhập mật khẩu"),
+      passwordConfirm: Yup.string()
+        .min(8)
+        .oneOf([Yup.ref("password")], "Mật khẩu không khớp")
+        .required("Vui lòng nhập lại mật khẩu"),
     }),
     onSubmit: () => {},
   });
@@ -122,8 +129,13 @@ export default function AccountForm(props: IProps) {
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
+                    error={
+                      !!(formik.touched.firstName && formik.errors.firstName)
+                    }
                     required
-                    // helperText="Please specify the first name"
+                    helperText={
+                      formik.touched.firstName && formik.errors.firstName
+                    }
                     label="Họ"
                     name="lastName"
                     onChange={handleFormChange}
@@ -253,9 +265,17 @@ export default function AccountForm(props: IProps) {
                     <Grid item xs={12} md={6}>
                       <TextField
                         fullWidth
+                        error={
+                          !!(formik.touched.password && formik.errors.password)
+                        }
                         required
+                        helperText={
+                          formik.touched.password && formik.errors.password
+                        }
                         label="Mật khẩu"
                         name="password"
+                        type="password"
+                        onBlur={formik.handleBlur}
                         onChange={handleFormChange}
                         value={info.password}
                       />
@@ -263,9 +283,21 @@ export default function AccountForm(props: IProps) {
                     <Grid item xs={12} md={6}>
                       <TextField
                         fullWidth
+                        error={
+                          !!(
+                            formik.touched.passwordConfirm &&
+                            formik.errors.passwordConfirm
+                          )
+                        }
                         required
+                        helperText={
+                          formik.touched.passwordConfirm &&
+                          formik.errors.passwordConfirm
+                        }
                         label="Nhập lại mật khẩu"
                         name="passwordConfirm"
+                        type="password"
+                        onBlur={formik.handleBlur}
                         onChange={handleFormChange}
                         value={info.passwordConfirm}
                       />

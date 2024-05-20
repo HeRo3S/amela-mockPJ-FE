@@ -11,12 +11,13 @@ import API from "constants/api";
 import { GetEmployeeInfoByID } from "api/employeesList";
 import Loading from "components/Loading";
 import PageTitle from "components/Layouts/DashboardLayout/PageTitle";
+import GoBackButton from "components/Button/GoBackButton";
 
 export default function AdminEditAccount() {
   const { id } = useParams();
 
   const { isLoading, data } = useQuery([API.GET_EMPLOYEES_ID, id], () =>
-    GetEmployeeInfoByID(id as string)
+    GetEmployeeInfoByID(id as string),
   );
 
   const [file, setFile] = useState<File | null>(null);
@@ -52,6 +53,7 @@ export default function AdminEditAccount() {
         success
       />
       <PageTitle text="Chỉnh sửa tài khoản" />
+      <GoBackButton />
       <AccountForm
         file={file}
         setFile={setFile}

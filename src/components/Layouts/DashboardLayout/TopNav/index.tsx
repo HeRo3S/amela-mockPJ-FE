@@ -15,6 +15,7 @@ import styles from "./style.module.scss";
 import NotificationPopper from "../NotificationsPopper";
 import { BellIcon } from "@heroicons/react/24/outline";
 import NotifiesList from "pages/Admin/AdminCreateNoti/NotifiesList";
+import { useState } from "react";
 
 interface IProps {
   onNavOpen: () => void;
@@ -22,8 +23,17 @@ interface IProps {
 function TopNav(props: IProps) {
   const { onNavOpen } = props;
   const { userInfo } = useAppSelector((state) => state.auth);
+
+  const [notiNumber, setNotiNumber] = useState(NotifiesList.length);
   const accountPopover = usePopover();
   const notificationPopper = usePopover();
+
+  const handleClickBellIcon = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    notificationPopper.handleToggle();
+    setNotiNumber(0);
+  };
 
   return (
     <>
@@ -38,10 +48,10 @@ function TopNav(props: IProps) {
           </Stack>
           <Stack alignItems="center" direction="row" spacing={2}>
             <Button
-              onClick={notificationPopper.handleToggle}
+              onClick={handleClickBellIcon}
               ref={notificationPopper.anchorRef}
             >
-              <Badge badgeContent={5} color="error">
+              <Badge badgeContent={notiNumber} color="error">
                 <SvgIcon>
                   <BellIcon />
                 </SvgIcon>
